@@ -49,19 +49,19 @@ Cross-browser compatibility: latest versions of popular browsers, IE7+.
 
 #JS learning.
 
-##JS learning. Simple authorization [Authorization](https://sash-ua.github.io/authorization/index.html ).
+##JS learning. [Authorization](https://sash-ua.github.io/authorization/index.html ).
 
 Used: HTML, CSS, pure JS, MVC pattern. 
 
 Cross-browser compatibility: latest versions of popular browsers, IE5+.
 
-##JS learning. Simple slider [Simple slider](https://sash-ua.github.io/slider/index.html ).
+##JS learning. [Simple slider](https://sash-ua.github.io/slider/index.html ).
 
 Used: HTML, CSS, pure JS .
 
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
-##JS learning. Simple JS timer [Simple JS timers](https://sash-ua.github.io/timers/index.html ).
+##JS learning. [Simple JS timers](https://sash-ua.github.io/timers/index.html ).
 
 Used: HTML, CSS, pure JS, OOP style. 
 
