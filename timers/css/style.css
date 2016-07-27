@@ -1,0 +1,26 @@
+input {
+    width: 60px;
+}
+section {
+    width: 45%;
+    min-width: 600px;
+    float: left;
+}
+section:after {
+    content: '';
+    clear: both;
+}
+.face {
+    height: 200px;
+}
+ul li{
+    font-size: 4.5em;
+    color: #900;
+    display: inline;
+}
+.off {
+    display: none;
+}
+.out li {
+    font-size: 18px;
+}

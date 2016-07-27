@@ -1,0 +1,41 @@
+.slider-t2 {
+    position: relative;
+    width: 427px;
+    height: 272px;
+    margin: 2px 0 0 24px;
+    border: 1px solid #efefef;
+    background-color: #ffffff;
+}
+.slider-t2__box {
+    display: none;
+}
+.slider__group-points {
+    height: 17px;
+}
+.slider__group-points_t2 {
+    margin: 0 auto 0 -33px;
+    position: absolute;
+    bottom: -44px;
+    left: 205px;
+}
+.slider__points_t2_act {
+    position: absolute;
+    display: none;
+}
+.slider__points_t2 {
+    border: 1px solid #ececec;
+    background-color: rgba(255,255,255,.1);
+}
+.slider__points {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 17px;
+    height: 17px;
+    padding: 2px;
+    margin: 0 1px 0 1px;
+    display: inline-block;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}

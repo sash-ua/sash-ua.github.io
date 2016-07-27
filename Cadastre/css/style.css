@@ -1,0 +1,269 @@
+/*fonts*/
+@font-face {
+    font-family: 'helveticaneuecyrroman';
+    src: url('../fonts/helvetica-reg/HelveticaRegular.eot');
+    src: url('../fonts/helvetica-reg/HelveticaRegular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/helvetica-reg/helveticaregular-webfont.woff2') format('woff2'),
+    url('../fonts/helvetica-reg/helveticaregular-webfont.woff') format('woff'),
+    url('../fonts/helvetica-reg/HelveticaRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/*global rules*/
+body, input, ul, li, header, .menu, h1, h3, p {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'helveticaneuecyrroman', Helvetica, Tahoma, Arial, sans-serif;
+}
+body {
+    font-size: 15px;
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 34px;
+}
+.header, .header a, .modal_window-header, .modal_window-header h1, .modal_window input:not(.modal_window-not_center), .social, .social a {
+    color: #ffffff;
+}
+#nav_menu, .menu:hover :before, .menu:hover :after, .modal_window, .facebook-text p, .facebook-text img, .social a, .divider p  {
+    position: absolute;
+}
+#wrapper, .header, .menu, .background, .social, .divider {
+    position: relative;
+}
+#wrapper {
+    width: 1215px;
+    height: 1015px;
+    margin: 0 auto;
+}
+.background {
+    clear: both;
+    width: 100%;
+    height: 100%;
+    background: url("../img/background.jpg")no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+/*end global rules*/
+/*header rules*/
+.header {
+    background-color: #074f8d;
+    height: 35px;
+}
+#nav_menu { /*nav menu rules*/
+    padding: 0 20px;
+    width: 800px;
+    height: 35px;
+    right: 0;
+}
+.menu {
+    height: 35px;
+    display: inline-block;
+    border-top: 1px solid #074f8d;
+    float: right;
+}
+.menu a, .menu_complex {
+    padding: 0 10px;
+}
+.divider-vertical {
+    height: 29px;
+    width: 1px;
+    background-color: #56a2dc;
+    position: relative;
+    left: 0;
+    top: -1px;
+    margin: 3px 0;
+}
+.menu_complex a{
+    text-decoration: underline;
+    padding: 0;
+}
+.menu:hover {
+    background: #3a8ecd;
+    background: -webkit-linear-gradient(#50afdc, #2e7ac4);
+    background: -o-linear-gradient(#50afdc, #2e7ac4);
+    background: -moz-linear-gradient(#50afdc, #2e7ac4);
+    background: linear-gradient(#50afdc, #2e7ac4);
+    border-bottom: 1px solid #4299d2;
+    border-top: 1px solid #50afdc;
+}
+.menu:hover :before, .menu:hover :after {
+    content: "";
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#64a8e3), to(#4399d3));
+    background-image: -webkit-linear-gradient(#64a8e3, #4399d3);
+    background-image: -moz-linear-gradient(#64a8e3, #4399d3);
+    background-image: -o-linear-gradient(#64a8e3, #4399d3);
+    background-image: linear-gradient(#64a8e3, #4399d3);
+    top: 0px;
+    bottom: 1px;
+    width: 1px;
+    height: 34px;
+}
+.menu:hover :before {
+    left: 0px;
+}
+.menu:hover :after {
+    right: 0px;
+}
+.menu img {
+    vertical-align: middle;
+    margin: 0 12px 0 6px;
+}
+/*end header rules*/
+
+/*modal window rules*/
+.modal_window {
+    width: 560px;
+    height: 615px;
+    top: 50%;
+    left: 50%;
+    margin-top: -307px;
+    margin-left: -280px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.modal_window-header, .modal_window-header h1 {
+    height: 63px;
+    line-height: 63px;
+    font-weight: 500;
+    border-bottom: 2px solid #c1c5b7;
+}
+.modal_window input:not(.modal_window-not_center) {
+    height: 36px;
+    width: 100%;
+    padding: 0 18px;
+    background-color: #0f0f0f;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #484948;
+}
+.modal_window input:focus:not(.no-shadow) {
+    border-bottom: 1px solid #689bcc;
+    background-color: #1b5288;
+    -webkit-box-shadow: 0 0 15px #689bcc;
+    -moz-box-shadow: 0 0 15px #689bcc;
+    box-shadow: 0 0 15px #689bcc;
+}
+.modal_window-not_center {
+    float: left;
+    font-size: 14px;
+    height: 16px;
+    margin: 10px 6px 10px 0px;
+}
+/*facebook button rules*/
+.social {
+    height: 36px;
+    width: 100%;
+    border-radius: 2px;
+    background: -webkit-linear-gradient(#3e579a 1%, #384266 91%);
+    background: -o-linear-gradient(#3e579a 1%, #384266 91%);
+    background: -moz-linear-gradient(#3e579a 1%, #384266 91%);
+    background: linear-gradient(#3e579a 1%, #384266 91%);
+}
+.social a {
+    z-index: 2;
+}
+.facebook-text {
+    width: 237px;
+    height: 35px;
+    float: left;
+    border-radius: 0 2px 2px 0;
+    border-top: 1px solid #768abc;
+    border-left: 1px solid #4e66a2;
+    line-height: 36px;
+}
+.facebook-text p {
+    display: inline-block;
+    vertical-align: middle;
+    top: 0;
+    left: 70px;
+    text-shadow: 0.3px -0.3px 1px #000000;
+}
+.facebook-text img {
+    display: inline-block;
+    clear: both;
+    top: 0;
+    right: 10px;
+    text-shadow: 0.5px -0.5px 1px #000000;
+}
+.facebook-simbol {
+    font-size: 24px;
+    line-height: 35px;
+    text-shadow: 0.5px -0.5px 1px #000000;
+    width: 36px;
+    height: 35px;
+    float: left;
+    border-radius: 2px 0 0 2px;
+    border-top: 1px solid #768abc;
+    border-right: 1px solid #1f3c76;
+}
+.social a {
+    line-height: 36px;
+    width: 100%;
+    display: block;
+}
+/*end facebook button rules*/
+/*input section*/
+.input-section {
+    width: 276px;
+    margin: 35px auto 0 auto;
+    color: #999999;
+}
+.divider {
+    width: 100%;
+    height: 75px;
+    color: #999999;
+}
+.divider-r, .divider-l {
+    width: 44%;
+    height: 1px;
+    display: inline-block;
+    background-color: #666666;
+    margin-top: 40px;
+    -webkit-box-shadow: 0 1px 1px #000000;
+    -moz-box-shadow: 0 1px 1px #000000;
+    box-shadow: 0 1px 1px #000000;
+}
+.divider-l {
+    margin-right: 5%;
+}
+.divider-r {
+    margin-left: 5%;
+}
+.divider p {
+    width: 100%;
+    top: 30px;
+}
+.input-section form input:not(:first-child) {
+    margin: 10px 0;
+}
+.input-section form input:first-child {
+    margin-bottom: 10px;
+}
+#create-account {
+    width: 152px;
+    background: #3a8ecd;
+    background: -webkit-linear-gradient(#4faddb 1%, #2e7ac4 91%);
+    background: -o-linear-gradient(#4faddb 1%, #2e7ac4 91%);
+    background: -moz-linear-gradient(#4faddb 1%, #2e7ac4 91%);
+    background: linear-gradient(#4faddb 1%, #2e7ac4 91%);
+    border-radius: 2px;
+    border-top: 1px solid #67c6e6;
+    border-left: 1px solid #5ba4df;
+    border-right: 1px solid #54a1db;
+    outline: none;
+    float: none;
+}
+/*end input section*/
+.modal_window-footer {
+    color: #999999;
+    font-size: 12px;
+    width: 60%;
+    margin: 0 auto;
+}
+/*end modal window rules*/

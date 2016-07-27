@@ -1,0 +1,238 @@
+/*global rules*/
+a {
+    text-decoration: none;
+    display: block;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+body, li, .item div, .menu-content, #button {
+    box-sizing: border-box;
+}
+body {
+    padding: 50px;
+    width: 1060px;
+    height: 950px;
+    box-shadow: 0 1px 3px gray;
+    margin: 0 auto;
+    overflow-x:hidden;
+}
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
+.menu {
+    font-family: arial, sans-serif;
+}
+/*logo rules*/
+#logo {
+    width: 100%;
+    height: 80px;
+}
+/*end logo rules*/
+
+/*nav rules*/
+.main-menu {
+    width: 100%;
+    height: 40px;
+    background: #4f4e4e;
+    background: -webkit-linear-gradient(#5e5e5e, #454545);
+    background: -o-linear-gradient(#5e5e5e, #454545);
+    background: -moz-linear-gradient(#5e5e5e, #454545);
+    background: linear-gradient(#5e5e5e, #454545);
+    position: relative;
+}
+.main-menu a {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
+    line-height: 40px;
+    font-size: 15px;
+}
+.main-menu li, .menu-foter li {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 35px;
+}
+.main-menu ul {
+    padding: 0 1px;
+}
+.main-menu li:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-left: 1px solid #bdbdbd;
+    border-right: 1px solid #bdbdbd;
+}
+/*button*/
+#button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    right: 20px;
+    top: 5px;
+    padding: 5px 4px;
+    display: none;
+}
+#button:hover {
+    box-shadow: 0 0 4px #fff;
+}
+#button div {
+    width: 20px;
+    height: 1px;
+    background-color: #bdbdbd;
+    margin: 4px 0;
+}
+#side-menu li{
+    display: block;
+}
+#side-menu {
+    -webkit-transition: right 0.5s cubic-bezier(.16,.47,.48,1.03);
+    -moz-transition: right 0.5s cubic-bezier(.16,.47,.48,1.03);
+    -ms-transition: right 0.5s cubic-bezier(.16,.47,.48,1.03);
+    -o-transition: right 0.5s cubic-bezier(.16,.47,.48,1.03);
+    transition: right 0.5s cubic-bezier(.16,.47,.48,1.03);
+    position: absolute;
+    right: -100%;
+    top: 40px;
+    width: 100px;
+    background-color: #5e5e5e;
+    z-index: 1;
+}
+.display-side-menu>#side-menu { /*side-menu switcher*/
+    right: 0;
+}
+/* end nav rules*/
+
+/*main content rules*/
+#main {
+    width: 100%;
+    height: 640px;
+    padding: 40px 0;
+    position: relative;
+}
+#main>div {
+    display: inline-block;
+    position: absolute;
+}
+.item {
+    width: 680px;
+    right: 0;
+}
+#item-img-wrapper {
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    line-height: 400px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+#item-img-wrapper:hover img {
+    transform: scale(1.25);
+}
+.item div img {
+    vertical-align: middle;
+    -webkit-transition: all 0.15s;
+    -moz-transition: all 0.15s;
+    -ms-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    transition: all 0.15s;
+}
+.item div:last-child {
+    padding: 25px;
+}
+.text {
+    width: 100%;
+}
+.menu-content {
+    width: 240px;
+    height: 240px;
+    left: 0;
+    border: 1px solid #e1e1e1;
+}
+.menu-content li {
+    display: block;
+    height: 40px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.menu-content li:last-child {
+    border-bottom: none;
+}
+.menu-content li a {
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #a9a9a9;
+}
+.menu-content li:hover a {
+    padding: 0 35px;
+    color: #000;
+    background-color: #f9f9f9;
+}
+/*end main content rules*/
+
+/*footer rules*/
+.menu-foter {
+    width: 100%;
+    height: 40px;
+    background-color: #e1e1e1;
+    position: relative;
+}
+.menu-foter li:hover a {
+    text-decoration: underline;
+}
+.menu-foter li a {
+    line-height: 40px;
+    color: #000;
+}
+.menu-foter span {
+    position: absolute;
+    line-height: 40px;
+    right: 20px;
+    top: 0;
+}
+/*end foter rules*/
+
+/*rules for various screen resolutions*/
+@media ( max-width: 1060px ) {
+    body, .item, .menu-content, #main {
+        width: 100%;
+        height: auto;
+    }
+    #main {
+        padding: 0;
+    }
+    #main>div {
+        position: relative;
+    }
+    .menu-content li {
+        text-align: center;
+    }
+    .item, .menu-content {
+        position: relative;
+    }
+    .menu-foter ul {
+        visibility: hidden;
+    }
+}
+@media ( max-width: 680px ) {
+    body {
+        padding: 50px 0;
+    }
+    #logo {
+        padding-left: 30px;
+    }
+    .item div img {
+        width: 85%;
+    }
+    #button {
+        display: block;
+    }
+    #side-menu-parent>ul {
+        display: none;
+    }
+    .item div:first-child:hover img {
+        transform: scale(1.1);
+    }
+}
