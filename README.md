@@ -55,9 +55,9 @@ Used: HTML, CSS, pure JS, MVC pattern.
 
 Cross-browser compatibility: latest versions of popular browsers, IE5+.
 
-##JS learning. Simple slider (https://sash-ua.github.io/slider/index.html ).
+##JS learning. Simple slider [Simple slider](https://sash-ua.github.io/slider/index.html ).
 
-Used: HTML, CSS, pure JS [Simple slider].
+Used: HTML, CSS, pure JS .
 
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
