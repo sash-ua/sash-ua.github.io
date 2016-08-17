@@ -68,4 +68,18 @@ Used: HTML, CSS, pure JS, OOP style.
 Cross-browser compatibility: latest versions of popular browsers, IE10+.
 
 
+##JS learning. [Quiz](https://sash-ua.github.io/exam/index.html ).
+
+Simple Quiz (test, exam) any number of questions and answers, "radio" and "checkbox"
+
+Used: HTML, CSS, pure JS, Lodash.
+
+ES6 - main.js
+
+ES5.1 - main-compiled.js (used Babel)
+
+Cross-browser compatibility: latest versions of popular browsers, IE9+.
+
+
+
 Copyright (c) 2016 Alex Tranchenko.
