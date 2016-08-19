@@ -81,5 +81,10 @@ ES5.1 - main-compiled.js (used Babel)
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 
+## [My project build system. v.1]( https://github.com/sash-ua/sash-ua.github.io/tree/master/gulp ).
+
+Config: Node (6.2.0), Gulp (3.9.1), Bower (1.7.9).
+
+
 
 Copyright (c) 2016 Alex Tranchenko.

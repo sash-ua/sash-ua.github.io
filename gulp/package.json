@@ -1,0 +1,36 @@
+{
+  "name": "My",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ".git"
+  },
+  "author": "Sasha",
+  "license": "MIT",
+  "devDependencies": {
+    
+  },
+  "dependencies": {
+	"graceful-fs": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-clean-css": "*",
+    "gulp-uncss": "*",
+    "browser-sync": "*",
+    "gulp-imagemin": "*",
+    "imagemin-pngquant": "*",
+    "gulp-uglify": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-rigger": "*",
+    "gulp-watch": "*",
+    "gulp-ignore": "*",
+    "gulp-rimraf": "*",
+    "rimraf": "*",
+    "gulp-svg-sprite": "*"
+  }
+}
