@@ -10,7 +10,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
  
 Pixel-perfect: Close.
 
-Used: HTML5, CSS3, pure JS (ES6, OOP). 
+Used: HTML5, CSS3, pure JS (ES6, OOP), SASS / SCSS. 
 
 main.ts - ES6.
 
