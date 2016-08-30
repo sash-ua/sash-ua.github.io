@@ -2,7 +2,19 @@
  
 Pixel-perfect: Yes.
 
-Used: HTML, CSS, pure JS. 
+Used: HTML5, CSS3, pure JS. 
+
+Cross-browser compatibility: latest versions of popular browsers, IE9+.
+
+##The site [Build Home](https://sash-ua.github.io/build-home/index.html ) with responsive design.
+ 
+Pixel-perfect: Close.
+
+Used: HTML5, CSS3, pure JS (ES6, OOP). 
+
+main.ts - ES6.
+
+main.js - ES5.
 
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
@@ -12,7 +24,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 -Responsive: no.
 
--Used: HTML, CSS. 
+-Used: HTML, CSS3. 
 
 -Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
@@ -22,7 +34,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 -Responsive: Yes.
 
--Used: HTML, CSS, pure JS. 
+-Used: HTML, CSS3, pure JS. 
 
 -Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
@@ -32,7 +44,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 -Responsive: no.
 
--Used: HTML, CSS. 
+-Used: HTML5, CSS3. 
 
 -Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
