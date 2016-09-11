@@ -29,7 +29,7 @@ export class Model {
             }
         }
     }
-    // remove all class by class name
+    // remove all classes by there class name
     static delClass(className){
         let allSelectors = document.querySelectorAll('.' + className);
         for(let i = 0; i < allSelectors.length; i++){
@@ -64,7 +64,7 @@ export class Model {
         });
         return t;
     }
-    // gen. todoN obj., add into this.obj
+    // to generate todoN obj., add it to this.obj
     addTodoItem(enteredTodo){
         let todo,
             todoName = this.genTodoName();
@@ -104,7 +104,7 @@ export class Model {
         this.counter();
         return `todo${this.c}`;
     }
-    // check / uncheck all checked symbols
+    // check / uncheck all of checked symbols
     selectAll(state, mapObj = this.obj){
         let origin = mapObj;
         mapObj.forEach((value, key, map) => {
@@ -112,7 +112,7 @@ export class Model {
         });
         return mapObj;
     }
-    // toggle STATE: 'checked' / ''. One todoN CHECKED or NOT
+    // toggle state: 'checked' / ''. One todoN checked or not
     selectTodo(el, mapObj = this.obj){
         mapObj.forEach((value, key, map) => {
             if(key === el && value.state === 'checked') {
@@ -123,7 +123,7 @@ export class Model {
         });
         return mapObj;
     }
-    // add new VALUE to edited TODO
+    // add new VALUE to the edited todo
     editTodo(el, elValue, mapObj = this.obj){
         mapObj.forEach((value, key, map) => {
             if(key === el) {
@@ -132,7 +132,7 @@ export class Model {
         });
         return mapObj;
     }
-    // check that STATE: CHECKED eq. or not to quantity of all this.obj's records
+    // check state: checked of todo. They are eq. or not to the quantity of all this.obj's records
     revChecked(mapObj = this.obj){
         let s = mapObj.size,
             q = 0;
@@ -175,12 +175,12 @@ export class Model {
             loseFocusEv,
             escEv;
         Model.addClass(elId, this.getTpl().classItem[3], 1);
-        // if focus loses edit field escape
+        // if focus loses edit field then escape
         todoEdit.addEventListener('blur', loseFocusEv = (e) => {
             Model.addClass(elId, this.getTpl().classItem[3], 2);
             todoEdit.removeEventListener('blur', loseFocusEv);
         });
-        //if press 'esc' edit field escape
+        // if press 'esc' edit field then escape
         todoEdit.addEventListener('keydown', escEv = (e) => {
             if(e.keyCode === 27){
                 Model.addClass(elId, this.getTpl().classItem[3], 2);

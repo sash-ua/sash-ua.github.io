@@ -62,7 +62,7 @@ export class Controller{
         this.htmlRender(objLocal);
         Model.addClass(this.m.getTpl().el[2], this.m.getTpl().classItem[2], 3, classesList);
         if(objLocal){
-            //insert quantity of todos.
+            //insert the quantity of todos.
             View.insert(this.m.getTpl().el[1], objLocal.size);
         }
     }
