@@ -14,14 +14,14 @@ export class Model {
     static addClass(el, classItem, f = 0, classesList = ''){
         let idEl = document.getElementById(el),
             classEl = document.getElementsByClassName(el);
-        // add / remove class by ID.
+        // add / remove a class by ID.
         if(idEl){
             if(f === 1){
                 idEl.classList.add(classItem);
             } else if(f === 2){
                 idEl.classList.remove(classItem);
             }
-            // Remove all class by class name and add one class.
+            // remove all classes by there class name and add one class.
         } else if((classEl) && f === 3){
             if(classesList.contains(el)){
                 Model.delClass(classItem);
