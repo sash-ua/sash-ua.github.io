@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="jspm_packages/system.js"></script>
+    <script type="text/javascript" src="jspm_packages/jspm_config.js"></script>
+    <script src="js/build.js"></script>
+    <link rel="stylesheet" href="css/build.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- 2. Configure SystemJS -->
+    <script>
+        System.config({
+            defaultJSExtensions: false
+        });
+        System.import('js/main.js');
+    </script>
+</head>
+<body>
+<section class="wrapper">
+    <div class="todos">
+        <h1 class="todos__header">todos</h1>
+        <div id="todos__body-id" class="todos__body rel__item">
+            <input id="todos__insert-item" type="text" class="todos__item" placeholder="Add a to-do..." autofocus>
+            <input type="checkbox" id="todos__check-all" class="todos__checkbox todos__checkbox_main">
+            <ul id="list-id" class="list todos__list">
+            </ul>
+            <ul class="todos__filters filters">
+                <span id="filters__count" class="filters__count"></span>
+                <li class="filters__item"><a href="#" id="all"  class="filters__link animated">All</a></li>
+                <li class="filters__item"><a href="#" id="active" class="filters__link animated">Active</a></li>
+                <li class="filters__item"><a href="#" id="complited" class="filters__link animated">Complited</a></li>
+                <li class="filters__item"><a href="#" id="clear_complited" class="filters__link animated">Clear Complited</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>
