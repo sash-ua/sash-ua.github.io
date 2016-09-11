@@ -6,6 +6,12 @@ Used: HTML5, CSS3, pure JS.
 
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
+##The site [ToDo list](https://sash-ua.github.io/todo/index.html ) with responsive design.
+ 
+Used: HTML5, CSS3, pure JS (OOP, ES6), Lodash, SystemJS + jspm. 
+
+Tested: Chrome latest.
+
 ##The site [Build Home](https://sash-ua.github.io/build-home/index.html ) with responsive design.
  
 Pixel-perfect: Close.
