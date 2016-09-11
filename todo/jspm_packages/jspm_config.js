@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/todo/",
+  baseURL: "./",
   defaultJSExtensions: true,
   transpiler: false,
   paths: {
