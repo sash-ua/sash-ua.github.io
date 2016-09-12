@@ -8,7 +8,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 ##The site [ToDo list](https://sash-ua.github.io/todo/index.html ) with responsive design.
  
-Used: HTML5, CSS3, SASS / SCSS, pure JS (ES6, OOP), Lodash, SystemJS + jspm. 
+Used: HTML5, CSS3, SASS / SCSS, pure JS (ES6, OOP, MVC), Lodash, SystemJS + jspm. 
 
 Tested: Chrome latest.
 
