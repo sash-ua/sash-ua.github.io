@@ -86,7 +86,7 @@ var ImgFinder = (function () {
     ImgFinder.prototype.isRetina = function () {
         return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
     };
-    ImgFinder.prototype.genTpl = function (obj) {
+    ImgFinder.genTpl = function (obj) {
         var out = document.getElementById('out'), gridItem = document.querySelectorAll('.grid-item'), gridTxt = document.querySelectorAll('.grid__txt');
         for (var i = 0; i < obj.length; i++) {
             var _a = i, _b = obj[_a], webformatURL = _b.webformatURL, user = _b.user;
@@ -96,13 +96,13 @@ var ImgFinder = (function () {
     };
     ;
     ImgFinder.prototype.loadDoc = function () {
-        var xhttp = null, self = this;
+        var xhttp = null;
         if (window.XMLHttpRequest) {
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     var data = JSON.parse(xhttp.responseText);
-                    self.genTpl(data.hits);
+                    ImgFinder.genTpl(data.hits);
                 }
             };
             if (this.isRetina()) {
@@ -135,7 +135,9 @@ window.onload = function () {
     if (inputQuery.attachEvent) {
         inputQuery.attachEvent('onkeydown', function (ev) {
             console.log(ev.keycode);
-            // if (ev.keycode = 13) ev.returnValue = false;
+            var keyCode = (window.event) ? e.which : e.keyCode;
+            if (keyCode === 13)
+                ev.returnValue = false;
         });
     }
     var f = new ImgFinder('search__query');
