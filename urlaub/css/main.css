@@ -1,9 +1,9 @@
-.logo, .sign-up, .promo__btn, .slider__arrow_1, .slider__arrow_2, .slider__step-numb, .partners__photo_1:after, .partners__photo_2:after, .partners__photo_3:after, .partners__photo_4:after, .partners__btn_item, .footer__logo, .footer__developer {
+.logo, .sign-up, .promo__btn, .slider__arrow_1, .slider__arrow_2, .slider__step-numb, .partners .partners__photo_1:after, .partners .partners__photo_2:after, .partners .partners__photo_3:after, .partners .partners__photo_4:after, .partners__btn_item, .footer__logo, .footer__developer {
   display: inline-block;
   background-image: url("../img/sprites/sprite.svg");
   background-size: 141.9375em 39.75em; }
 
-.lt-ie9 .logo, .lt-ie9 .sign-up, .lt-ie9 .promo__btn, .lt-ie9 .slider__arrow_1, .lt-ie9 .slider__arrow_2, .lt-ie9 .slider__step-numb, .lt-ie9 .partners__photo_1:after, .lt-ie9 .partners__photo_2:after, .lt-ie9 .partners__photo_3:after, .lt-ie9 .partners__photo_4:after, .lt-ie9 .partners__btn_item, .lt-ie9 .footer__logo, .lt-ie9 .footer__developer {
+.lt-ie9 .logo, .lt-ie9 .sign-up, .lt-ie9 .promo__btn, .lt-ie9 .slider__arrow_1, .lt-ie9 .slider__arrow_2, .lt-ie9 .slider__step-numb, .lt-ie9 .partners .partners__photo_1:after, .lt-ie9 .partners .partners__photo_2:after, .lt-ie9 .partners .partners__photo_3:after, .lt-ie9 .partners .partners__photo_4:after, .lt-ie9 .partners__btn_item, .lt-ie9 .footer__logo, .lt-ie9 .footer__developer {
   background-image: url("../img/sprites/sprite.png"); }
 
 @font-face {
@@ -409,15 +409,16 @@ body .slider__slide_1, .wrapper .slider__slide_1, .wrapper__box .slider__slide_1
       -ms-background-size: cover;
       -o-background-size: cover;
       background-size: cover; } }
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-    .slider__slide_1 {
-      background: url("../img/bg_pc@2x.jpg") top center no-repeat;
-      -webkit-background-size: cover;
-      -khtml-background-size: cover;
-      -moz-background-size: cover;
-      -ms-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; } }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .slider .slider__slide_1, .slider__slide_1 .slider__slide_1, .slider__slide_2 .slider__slide_1, .slider__slide_3 .slider__slide_1 {
+    background: url("../img/bg_pc@2x.jpg") top center no-repeat;
+    -webkit-background-size: cover;
+    -khtml-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; } }
 
 @media only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (max-resolution: 143dpi) {
   .slider .slider__slide_1, .slider__slide_1 .slider__slide_1, .slider__slide_2 .slider__slide_1, .slider__slide_3 .slider__slide_1 {
@@ -431,7 +432,7 @@ body .slider__slide_1, .wrapper .slider__slide_1, .wrapper__box .slider__slide_1
 
 @media only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (min-resolution: 144dpi) {
   .slider .slider__slide_1, .slider__slide_1 .slider__slide_1, .slider__slide_2 .slider__slide_1, .slider__slide_3 .slider__slide_1 {
-    background: url("../img/bg_pc@2x.jpg") -76px 0 no-repeat;
+    background: url("../img/bg_pc@2x.jpg") -39px 0 no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
     -moz-background-size: cover;
@@ -459,6 +460,16 @@ body .slider__slide_1, .wrapper .slider__slide_1, .wrapper__box .slider__slide_1
     -o-background-size: cover;
     background-size: cover; } }
 
+.ie8 .slider__slide_2, html .slider__slide_2,
+body .slider__slide_2, .wrapper .slider__slide_2, .wrapper__box .slider__slide_2, .divider .slider__slide_2 {
+  background: url("../img/bg_car.jpg") center no-repeat;
+  -webkit-background-size: cover;
+  -khtml-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 .slider__slide_2 {
   width: 100%; }
   @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
@@ -470,25 +481,16 @@ body .slider__slide_1, .wrapper .slider__slide_1, .wrapper__box .slider__slide_1
       -ms-background-size: cover;
       -o-background-size: cover;
       background-size: cover; } }
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-    .slider__slide_2 {
-      background: url("../img/bg_car@2x.jpg") top center no-repeat;
-      -webkit-background-size: cover;
-      -khtml-background-size: cover;
-      -moz-background-size: cover;
-      -ms-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; } }
 
-.ie8 .slider__slide_2, html .slider__slide_2,
-body .slider__slide_2, .wrapper .slider__slide_2, .wrapper__box .slider__slide_2, .divider .slider__slide_2 {
-  background: url("../img/bg_car.jpg") center no-repeat;
-  -webkit-background-size: cover;
-  -khtml-background-size: cover;
-  -moz-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .slider .slider__slide_2, .slider__slide_1 .slider__slide_2, .slider__slide_2 .slider__slide_2, .slider__slide_3 .slider__slide_2 {
+    background: url("../img/bg_car@2x.jpg") top center no-repeat;
+    -webkit-background-size: cover;
+    -khtml-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; } }
 
 @media only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (max-resolution: 143dpi) {
   .slider .slider__slide_2, .slider__slide_1 .slider__slide_2, .slider__slide_2 .slider__slide_2, .slider__slide_3 .slider__slide_2 {
@@ -530,6 +532,16 @@ body .slider__slide_2, .wrapper .slider__slide_2, .wrapper__box .slider__slide_2
     -o-background-size: cover;
     background-size: cover; } }
 
+.ie8 .slider__slide_3, html .slider__slide_3,
+body .slider__slide_3, .wrapper .slider__slide_3, .wrapper__box .slider__slide_3, .divider .slider__slide_3 {
+  background: url("../img/bg_legs.jpg") center no-repeat;
+  -webkit-background-size: cover;
+  -khtml-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 .slider__slide_3 {
   width: 100%; }
   @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
@@ -541,25 +553,16 @@ body .slider__slide_2, .wrapper .slider__slide_2, .wrapper__box .slider__slide_2
       -ms-background-size: cover;
       -o-background-size: cover;
       background-size: cover; } }
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-    .slider__slide_3 {
-      background: url("../img/bg_legs@2x.jpg") top center no-repeat;
-      -webkit-background-size: cover;
-      -khtml-background-size: cover;
-      -moz-background-size: cover;
-      -ms-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; } }
 
-.ie8 .slider__slide_3, html .slider__slide_3,
-body .slider__slide_3, .wrapper .slider__slide_3, .wrapper__box .slider__slide_3, .divider .slider__slide_3 {
-  background: url("../img/bg_legs.jpg") center no-repeat;
-  -webkit-background-size: cover;
-  -khtml-background-size: cover;
-  -moz-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .slider .slider__slide_3, .slider__slide_1 .slider__slide_3, .slider__slide_2 .slider__slide_3, .slider__slide_3 .slider__slide_3 {
+    background: url("../img/bg_legs@2x.jpg") top center no-repeat;
+    -webkit-background-size: cover;
+    -khtml-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; } }
 
 @media only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-width: 32.8125em) and (max-width: 49.365em) and (max-resolution: 143dpi) {
   .slider .slider__slide_3, .slider__slide_1 .slider__slide_3, .slider__slide_2 .slider__slide_3, .slider__slide_3 .slider__slide_3 {
@@ -757,12 +760,12 @@ body .slider__slide_3, .wrapper .slider__slide_3, .wrapper__box .slider__slide_3
   .hidden {
     display: block; } }
 
-.partners__photo, .partners__photo_1, .partners__photo_2, .partners__photo_3, .partners__photo_4 {
+.partners__photo, .partners .partners__photo_1, .partners .partners__photo_2, .partners .partners__photo_3, .partners .partners__photo_4 {
   height: 120px;
   margin: 0 auto;
   position: relative;
   width: 120px; }
-  .partners__photo:after, .partners__photo_1:after, .partners__photo_2:after, .partners__photo_3:after, .partners__photo_4:after {
+  .partners__photo:after, .partners .partners__photo_1:after, .partners .partners__photo_2:after, .partners .partners__photo_3:after, .partners .partners__photo_4:after {
     bottom: -5px;
     content: '';
     position: absolute;
@@ -779,7 +782,7 @@ body .partners__photo_1, .wrapper .partners__photo_1, .wrapper__box .partners__p
   background-size: cover; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
-  .partners__photo_1 {
+  .partners .partners__photo_1 {
     background: url("../img/bg_men_sm.png") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -789,7 +792,7 @@ body .partners__photo_1, .wrapper .partners__photo_1, .wrapper__box .partners__p
     background-size: cover; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-  .partners__photo_1 {
+  .partners .partners__photo_1 {
     background: url("../img/bg_men_sm@2x.svg") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -798,11 +801,11 @@ body .partners__photo_1, .wrapper .partners__photo_1, .wrapper__box .partners__p
     -o-background-size: cover;
     background-size: cover; } }
 
-.partners__photo_1:after {
+.partners .partners__photo_1:after {
   width: 2.5625em;
   height: 2.5625em;
   background-position: -139.375em -37.1875em; }
-  .lt-ie9 .partners__photo_1:after {
+  .lt-ie9 .partners .partners__photo_1:after {
     width: 41px;
     height: 41px;
     background-position: -2230px -595px; }
@@ -818,7 +821,7 @@ body .partners__photo_2, .wrapper .partners__photo_2, .wrapper__box .partners__p
   background-size: cover; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
-  .partners__photo_2 {
+  .partners .partners__photo_2 {
     background: url("../img/bg_wmn_sm.png") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -828,7 +831,7 @@ body .partners__photo_2, .wrapper .partners__photo_2, .wrapper__box .partners__p
     background-size: cover; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-  .partners__photo_2 {
+  .partners .partners__photo_2 {
     background: url("../img/bg_wmn_sm@2x.svg") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -837,11 +840,11 @@ body .partners__photo_2, .wrapper .partners__photo_2, .wrapper__box .partners__p
     -o-background-size: cover;
     background-size: cover; } }
 
-.partners__photo_2:after {
+.partners .partners__photo_2:after {
   width: 2.5625em;
   height: 2.5625em;
   background-position: -131.6875em -29.5em; }
-  .lt-ie9 .partners__photo_2:after {
+  .lt-ie9 .partners .partners__photo_2:after {
     width: 41px;
     height: 41px;
     background-position: -2107px -472px; }
@@ -857,7 +860,7 @@ body .partners__photo_3, .wrapper .partners__photo_3, .wrapper__box .partners__p
   background-size: cover; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
-  .partners__photo_3 {
+  .partners .partners__photo_3 {
     background: url("../img/bg_men2_sm.png") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -867,7 +870,7 @@ body .partners__photo_3, .wrapper .partners__photo_3, .wrapper__box .partners__p
     background-size: cover; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-  .partners__photo_3 {
+  .partners .partners__photo_3 {
     background: url("../img/bg_men2_sm@2x.svg") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -876,11 +879,11 @@ body .partners__photo_3, .wrapper .partners__photo_3, .wrapper__box .partners__p
     -o-background-size: cover;
     background-size: cover; } }
 
-.partners__photo_3:after {
+.partners .partners__photo_3:after {
   width: 2.5625em;
   height: 2.5625em;
   background-position: -134.25em -32.0625em; }
-  .lt-ie9 .partners__photo_3:after {
+  .lt-ie9 .partners .partners__photo_3:after {
     width: 41px;
     height: 41px;
     background-position: -2148px -513px; }
@@ -896,7 +899,7 @@ body .partners__photo_4, .wrapper .partners__photo_4, .wrapper__box .partners__p
   background-size: cover; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (max-resolution: 143dpi) {
-  .partners__photo_4 {
+  .partners .partners__photo_4 {
     background: url("../img/bg_wmn2_sm.png") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -906,7 +909,7 @@ body .partners__photo_4, .wrapper .partners__photo_4, .wrapper__box .partners__p
     background-size: cover; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
-  .partners__photo_4 {
+  .partners .partners__photo_4 {
     background: url("../img/bg_wmn2_sm@2x.svg") top center no-repeat;
     -webkit-background-size: cover;
     -khtml-background-size: cover;
@@ -915,11 +918,11 @@ body .partners__photo_4, .wrapper .partners__photo_4, .wrapper__box .partners__p
     -o-background-size: cover;
     background-size: cover; } }
 
-.partners__photo_4:after {
+.partners .partners__photo_4:after {
   width: 2.5625em;
   height: 2.5625em;
   background-position: -136.8125em -34.625em; }
-  .lt-ie9 .partners__photo_4:after {
+  .lt-ie9 .partners .partners__photo_4:after {
     width: 41px;
     height: 41px;
     background-position: -2189px -554px; }
