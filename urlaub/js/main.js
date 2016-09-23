@@ -141,6 +141,7 @@ window.onload = function () {
     }
     else {
         e.attachEvent('click', function (ev) {
+            console.log('1');
             console.log(event.preventDefault);
             event.returnValue = false;
             f.loadDoc();
