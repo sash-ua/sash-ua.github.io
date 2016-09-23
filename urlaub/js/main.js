@@ -134,7 +134,7 @@ window.onload = function () {
     var inputQuery = document.getElementById('search__query');
     if (inputQuery.attachEvent) {
         inputQuery.attachEvent('onkeydown', function (ev) {
-            var keyCode = (window.event) ? e.which : e.keyCode;
+            var keyCode = (window.event) ? ev.which : ev.keyCode;
             if (keyCode === 13)
                 return false;
             console.log(keyCode);
