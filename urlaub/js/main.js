@@ -136,7 +136,7 @@ window.onload = function () {
         inputQuery.attachEvent('onkeydown', function (ev) {
             var keyCode = (window.event) ? e.which : e.keyCode;
             if (keyCode === 13)
-                ev.returnValue = false;
+                return false;
             console.log(keyCode);
         });
     }
