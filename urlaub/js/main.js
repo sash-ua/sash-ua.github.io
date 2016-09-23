@@ -140,7 +140,8 @@ window.onload = function () {
         });
     }
     else {
-        e.attachEvent('click', function (ev) {
+        e.attachEvent('onclick', function (ev) {
+            console.log(event.preventDefault);
             event.returnValue = false;
             f.loadDoc();
         });

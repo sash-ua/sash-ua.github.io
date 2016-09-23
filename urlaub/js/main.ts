@@ -147,6 +147,7 @@ window.onload = function () {
         });
     } else {
         e.attachEvent('click', (ev) => {
+            console.log(event.preventDefault);
             event.returnValue = false;
             f.loadDoc();
         });
