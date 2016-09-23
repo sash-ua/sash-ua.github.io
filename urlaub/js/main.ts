@@ -141,7 +141,8 @@ window.onload = function () {
     let inputQuery = document.getElementById('search__query');
     if(inputQuery.attachEvent){
         inputQuery.attachEvent('onkeydown', (ev) => {
-            if (ev.keycode = 13) ev.returnValue = false;
+            console.log(ev.keycode);
+            // if (ev.keycode = 13) ev.returnValue = false;
         });
     }
 
