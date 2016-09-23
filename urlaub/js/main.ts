@@ -52,6 +52,7 @@ class Slider{
         this.counter(step);
     }
 }
+// Launch Sliders function
 class LaunchSliders {
     protected arr: Array<string>;
     s: any;
@@ -73,6 +74,7 @@ class LaunchSliders {
     }
 }
 
+// Finder for section Ideas
 class ImgFinder {
     protected url: string;
     protected urlRetina: string;
@@ -108,7 +110,6 @@ class ImgFinder {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     let data = JSON.parse(xhttp.responseText);
                     self.genTpl(data.hits);
-                    console.log(data.hits);
                 }
             };
             if(this.isRetina()) {

@@ -50,6 +50,7 @@ var Slider = (function () {
     };
     return Slider;
 }());
+// Launch Sliders function
 var LaunchSliders = (function () {
     function LaunchSliders(arr) {
         this.arr = arr;
@@ -70,6 +71,7 @@ var LaunchSliders = (function () {
     };
     return LaunchSliders;
 }());
+// Finder for section Ideas
 var ImgFinder = (function () {
     function ImgFinder(inputEl) {
         this.inputEl = inputEl;
@@ -101,7 +103,6 @@ var ImgFinder = (function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     var data = JSON.parse(xhttp.responseText);
                     self.genTpl(data.hits);
-                    console.log(data.hits);
                 }
             };
             if (this.isRetina()) {
@@ -139,7 +140,10 @@ window.onload = function () {
         });
     }
     else {
-        e.attachEvent('onclick', f.loadDoc.bind(f));
+        e.attachEvent('click', function (ev) {
+            ev.preventDefault();
+            f.loadDoc();
+        });
     }
 };
 //# sourceMappingURL=main.js.map
