@@ -132,7 +132,8 @@ window.onload = function () {
     //ImgFinder
     var e = document.getElementById('search__partners');
     document.getElementById('search__query').attachEvent('onkeydown', function (ev) {
-        ev.returnValue = false;
+        if (ev.keycode = 13)
+            ev.returnValue = false;
     });
     var f = new ImgFinder('search__query');
     f.loadDoc();

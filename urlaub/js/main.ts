@@ -139,7 +139,7 @@ window.onload = function () {
     //ImgFinder
     let e = document.getElementById('search__partners');
     document.getElementById('search__query').attachEvent('onkeydown', (ev) => {
-        ev.returnValue = false;
+        if (ev.keycode = 13) ev.returnValue = false;
     });
 
     let f = new ImgFinder('search__query');
