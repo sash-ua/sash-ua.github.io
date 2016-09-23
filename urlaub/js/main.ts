@@ -135,8 +135,12 @@ window.onload = function () {
     s2.addEvLisner();
     let s3 = new LaunchSliders(sl3);
     s3.addEvLisner();
+
     //ImgFinder
     let e = document.getElementById('search__partners');
+    document.getElementById('search__query').attachEvent('onkeydown', (ev) => {
+        ev.returnValue = false;
+    });
 
     let f = new ImgFinder('search__query');
     f.loadDoc();
@@ -147,7 +151,6 @@ window.onload = function () {
         });
     } else {
         e.attachEvent('onclick', (ev) => {
-            console.log(ev.preventDefault);
             ev.returnValue = false;
             f.loadDoc();
         });

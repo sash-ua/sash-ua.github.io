@@ -131,6 +131,9 @@ window.onload = function () {
     s3.addEvLisner();
     //ImgFinder
     var e = document.getElementById('search__partners');
+    document.getElementById('search__query').attachEvent('onkeydown', function (ev) {
+        ev.returnValue = false;
+    });
     var f = new ImgFinder('search__query');
     f.loadDoc();
     if (e.addEventListener) {
@@ -141,7 +144,6 @@ window.onload = function () {
     }
     else {
         e.attachEvent('onclick', function (ev) {
-            console.log(ev.preventDefault);
             ev.returnValue = false;
             f.loadDoc();
         });
