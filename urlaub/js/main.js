@@ -131,10 +131,13 @@ window.onload = function () {
     s3.addEvLisner();
     //ImgFinder
     var e = document.getElementById('search__partners');
-    document.getElementById('search__query').attachEvent('onkeydown', function (ev) {
-        if (ev.keycode = 13)
-            ev.returnValue = false;
-    });
+    var inputQuery = document.getElementById('search__query');
+    if (inputQuery.attachEvent) {
+        inputQuery.attachEvent('onkeydown', function (ev) {
+            if (ev.keycode = 13)
+                ev.returnValue = false;
+        });
+    }
     var f = new ImgFinder('search__query');
     f.loadDoc();
     if (e.addEventListener) {
