@@ -146,6 +146,9 @@ window.onload = function () {
             f.loadDoc();
         });
     } else {
-        e.attachEvent('onclick', f.loadDoc.bind(f));
+        e.attachEvent('click', (ev) => {
+            event.returnValue = false;
+            f.loadDoc();
+        });
     }
 };
