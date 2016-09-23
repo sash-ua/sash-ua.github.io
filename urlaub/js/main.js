@@ -140,7 +140,7 @@ window.onload = function () {
         });
     }
     else {
-        e.attachEvent('onclick', function (ev) {
+        e.attachEvent('click', function (ev) {
             console.log(event.preventDefault);
             event.returnValue = false;
             f.loadDoc();
