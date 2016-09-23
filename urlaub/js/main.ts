@@ -123,6 +123,39 @@ class ImgFinder {
     };
 }
 
+// Add event listners
+class LaunchFinder {
+    protected obj:[string, string];
+    constructor(obj: any){
+        this.obj = obj;
+    }
+    addEvsLs(): void {
+        let[submitEl, inputQueryEl] = this.obj;
+        let submit = document.getElementById(submitEl);
+        let inputQuery = document.getElementById(inputQueryEl);
+        if(inputQuery.attachEvent){
+            inputQuery.attachEvent('onkeydown', (event) => {
+                let e = window.event;
+                let keyCode = e.which || e.keyCode;
+                if (keyCode === 13) return false;
+            });
+        }
+        let f = new ImgFinder('search__query');
+        f.loadDoc();
+        if(submit.addEventListener) {
+            submit.addEventListener('click', (ev) => {
+                ev.preventDefault();
+                f.loadDoc();
+            });
+        } else {
+            submit.attachEvent('onclick', (ev) => {
+                ev.returnValue = false;
+                f.loadDoc();
+            });
+        }
+    }
+}
+
 window.onload = function () {
     //Slider
     let sl1 = ['.slider__1_slide', '.slider__1_arrow',  'slider__1_arrows'],
@@ -136,27 +169,7 @@ window.onload = function () {
     s3.addEvLisner();
 
     //ImgFinder
-    let e = document.getElementById('search__partners');
-    let inputQuery = document.getElementById('search__query');
-    if(inputQuery.attachEvent){
-        inputQuery.attachEvent('onkeydown', (event) => {
-            let e = window.event;
-            let keyCode = e.which || e.keyCode;
-            if (keyCode === 13) return false;
-            console.log(keyCode);
-        });
-    }
-    let f = new ImgFinder('search__query');
-    f.loadDoc();
-    if(e.addEventListener) {
-        e.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            f.loadDoc();
-        });
-    } else {
-        e.attachEvent('onclick', (ev) => {
-            ev.returnValue = false;
-            f.loadDoc();
-        });
-    }
+    let fData = ['search__partners', 'search__query'];
+    let finder = new LaunchFinder(fData);
+    finder.addEvsLs();
 };

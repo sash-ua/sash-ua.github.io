@@ -120,6 +120,40 @@ var ImgFinder = (function () {
     ;
     return ImgFinder;
 }());
+// Add event listners
+var LaunchFinder = (function () {
+    function LaunchFinder(obj) {
+        this.obj = obj;
+    }
+    LaunchFinder.prototype.addEvsLs = function () {
+        var _a = this.obj, submitEl = _a[0], inputQueryEl = _a[1];
+        var submit = document.getElementById(submitEl);
+        var inputQuery = document.getElementById(inputQueryEl);
+        if (inputQuery.attachEvent) {
+            inputQuery.attachEvent('onkeydown', function (event) {
+                var e = window.event;
+                var keyCode = e.which || e.keyCode;
+                if (keyCode === 13)
+                    return false;
+            });
+        }
+        var f = new ImgFinder('search__query');
+        f.loadDoc();
+        if (submit.addEventListener) {
+            submit.addEventListener('click', function (ev) {
+                ev.preventDefault();
+                f.loadDoc();
+            });
+        }
+        else {
+            submit.attachEvent('onclick', function (ev) {
+                ev.returnValue = false;
+                f.loadDoc();
+            });
+        }
+    };
+    return LaunchFinder;
+}());
 window.onload = function () {
     //Slider
     var sl1 = ['.slider__1_slide', '.slider__1_arrow', 'slider__1_arrows'], sl2 = ['.slider__2_slide', '.slider__2_arrow', 'slider__2_arrows'], sl3 = ['.slider__3_slide', '.slider__3_arrow', 'slider__3_arrows'];
@@ -130,30 +164,8 @@ window.onload = function () {
     var s3 = new LaunchSliders(sl3);
     s3.addEvLisner();
     //ImgFinder
-    var e = document.getElementById('search__partners');
-    var inputQuery = document.getElementById('search__query');
-    if (inputQuery.attachEvent) {
-        inputQuery.attachEvent('onkeydown', function (event) {
-            var e = window.event;
-            var keyCode = e.which || e.keyCode;
-            if (keyCode === 13)
-                return false;
-            console.log(keyCode);
-        });
-    }
-    var f = new ImgFinder('search__query');
-    f.loadDoc();
-    if (e.addEventListener) {
-        e.addEventListener('click', function (ev) {
-            ev.preventDefault();
-            f.loadDoc();
-        });
-    }
-    else {
-        e.attachEvent('onclick', function (ev) {
-            ev.returnValue = false;
-            f.loadDoc();
-        });
-    }
+    var fData = ['search__partners', 'search__query'];
+    var finder = new LaunchFinder(fData);
+    finder.addEvsLs();
 };
 //# sourceMappingURL=main.js.map

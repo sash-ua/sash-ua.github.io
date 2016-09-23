@@ -107,7 +107,7 @@ var config = {
     server: {
         baseDir: "./build"
     },
-    // Tunnel freq. sourse of errors, use for presentation only
+    // Tunnel is freq. sourse of errors, use for presentation only
     tunnel: false,
     host: 'localhost',
     port: 9000,
