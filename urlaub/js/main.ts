@@ -139,8 +139,9 @@ window.onload = function () {
     let e = document.getElementById('search__partners');
     let inputQuery = document.getElementById('search__query');
     if(inputQuery.attachEvent){
-        inputQuery.attachEvent('onkeydown', (ev) => {
-            let keyCode = (window.Event) ? ev.which : ev.keyCode;
+        inputQuery.attachEvent('onkeydown', (event) => {
+            let e = window.event;
+            let keyCode = e.which || e.keyCode;
             if (keyCode === 13) return false;
             console.log(keyCode);
         });
