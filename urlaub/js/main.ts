@@ -85,12 +85,6 @@ class ImgFinder {
         this.url = `https://pixabay.com/api/?key=${API_KEY}&image_type=photo&per_page=7&min_height=310&q=`;
         this.urlRetina = `https://pixabay.com/api/?key=${API_KEY}&image_type=photo&per_page=7&min_height=620&q=`;
     }
-    query():string {
-        return document.getElementById(this.inputEl).value;
-    };
-    isRetina():boolean{
-        return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-    }
     static genTpl(obj: any): void {
         let out = document.getElementById('out'),
             gridItem = document.querySelectorAll('.grid-item'),
@@ -101,6 +95,12 @@ class ImgFinder {
             gridTxt[i].innerHTML = `Posted: ${user}`;
         }
     };
+    query():string {
+        return document.getElementById(this.inputEl).value;
+    };
+    isRetina():boolean{
+        return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+    }
     loadDoc():void {
         let xhttp = null;
         if (window.XMLHttpRequest) {
@@ -140,9 +140,9 @@ window.onload = function () {
     let inputQuery = document.getElementById('search__query');
     if(inputQuery.attachEvent){
         inputQuery.attachEvent('onkeydown', (ev) => {
-            console.log(ev.keycode);
             let keyCode = (window.event) ? e.which : e.keyCode;
             if (keyCode === 13) ev.returnValue = false;
+            console.log(keyCode);
         });
     }
     let f = new ImgFinder('search__query');
