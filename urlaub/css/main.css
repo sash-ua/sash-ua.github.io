@@ -312,7 +312,11 @@ img {
   font-size: 22px;
   margin: 0 auto;
   width: 290px; }
-  @media (min-width: 32.8125em) and (max-width: 49.365em) {
+  @media (max-width: 49.365em) {
+    .sladers__name {
+      padding-left: 18px;
+      width: 300px; } }
+  @media (max-width: 21.365em) {
     .sladers__name {
       padding-left: 11px; } }
 
