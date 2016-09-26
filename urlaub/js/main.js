@@ -1,11 +1,10 @@
 /* Copyright Alex Tranchenko 2016*/
 'use strict';
-// Slider
 var Slider = (function () {
-    function Slider(slideEl, manageEl) {
+    function Slider(config) {
         this.index = 0;
-        this.slideEl = slideEl;
-        this.manageEl = manageEl;
+        this.slideEl = config.slideEl;
+        this.manageEl = config.manageEl;
     }
     Slider.prototype.circle = function (beginIndex) {
         this.itemAmount = this.slideEl.length;
@@ -50,7 +49,6 @@ var Slider = (function () {
     };
     return Slider;
 }());
-// Launch Sliders function
 var LaunchSliders = (function () {
     function LaunchSliders(arr) {
         this.arr = arr;
@@ -60,7 +58,7 @@ var LaunchSliders = (function () {
         var slideEl = document.querySelectorAll(slide);
         var mE = document.querySelectorAll(arrow);
         var slider__arrow = document.getElementById(parentsArrow);
-        this.s = new Slider(slideEl, mE, slider__arrow);
+        this.s = new Slider({ slideEl: slideEl, manageEl: mE });
         this.s.autoSlide();
         if (slider__arrow.addEventListener) {
             slider__arrow.addEventListener('click', this.s.thisPoint.bind(this.s), false);
@@ -71,7 +69,6 @@ var LaunchSliders = (function () {
     };
     return LaunchSliders;
 }());
-// Finder for section Ideas
 var ImgFinder = (function () {
     function ImgFinder(inputEl) {
         this.inputEl = inputEl;
@@ -80,11 +77,13 @@ var ImgFinder = (function () {
         this.urlRetina = "https://pixabay.com/api/?key=" + API_KEY + "&image_type=photo&per_page=7&min_height=620&q=";
     }
     ImgFinder.genTpl = function (obj) {
-        var out = document.getElementById('out'), gridItem = document.querySelectorAll('.grid-item'), gridTxt = document.querySelectorAll('.grid__txt');
+        var gridItem = document.querySelectorAll('.grid-item'), gridTxt = document.querySelectorAll('.grid__txt');
         for (var i = 0; i < obj.length; i++) {
             var _a = i, _b = obj[_a], webformatURL = _b.webformatURL, user = _b.user;
             gridItem[i].style.backgroundImage = "url(" + webformatURL + ")";
-            gridTxt[i].innerHTML = "Posted: " + user;
+            var span = document.createElement('span');
+            span.appendChild(document.createTextNode("Posted: " + user));
+            gridTxt[i].appendChild(span);
         }
     };
     ;
@@ -92,12 +91,12 @@ var ImgFinder = (function () {
         return document.getElementById(this.inputEl).value;
     };
     ;
-    ImgFinder.prototype.isRetina = function () {
+    ImgFinder.isRetina = function () {
         return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
     };
     ImgFinder.prototype.loadDoc = function () {
         var xhttp = null;
-        if (window.XMLHttpRequest) {
+        if (XMLHttpRequest) {
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -105,7 +104,7 @@ var ImgFinder = (function () {
                     ImgFinder.genTpl(data.hits);
                 }
             };
-            if (this.isRetina()) {
+            if (ImgFinder.isRetina()) {
                 xhttp.open("GET", "" + this.urlRetina + encodeURIComponent(this.query()), true);
             }
             else {
@@ -120,7 +119,6 @@ var ImgFinder = (function () {
     ;
     return ImgFinder;
 }());
-// Add event listners
 var LaunchFinder = (function () {
     function LaunchFinder(obj) {
         this.obj = obj;
@@ -137,7 +135,7 @@ var LaunchFinder = (function () {
                     return false;
             });
         }
-        var f = new ImgFinder('search__query');
+        var f = new ImgFinder(inputQueryEl);
         f.loadDoc();
         if (submit.addEventListener) {
             submit.addEventListener('click', function (ev) {

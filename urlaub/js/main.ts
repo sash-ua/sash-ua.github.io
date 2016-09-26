@@ -2,17 +2,21 @@
 'use strict';
 
 // Slider
+interface SliderInput{
+    slideEl: NodeListOf<Element>;
+    manageEl: NodeListOf<Element>;
+}
 class Slider{
-    protected index: number = 0;
-    protected slideEl: any;
-    protected manageEl: any;
-    protected itemAmount: number;
-    protected i: number;
-    protected setDelay: number;
-    protected autoInt: any;
-    constructor(slideEl:any, manageEl:any){
-        this.slideEl = slideEl;
-        this.manageEl = manageEl
+    private index: number = 0;
+    private slideEl;
+    private manageEl;
+    private itemAmount: number;
+    private i: number;
+    private setDelay: number;
+    private autoInt: number;
+    constructor(config: SliderInput){
+        this.slideEl = config.slideEl;
+        this.manageEl = config.manageEl;
     }
     circle (beginIndex?: number): void {
         this.itemAmount = this.slideEl.length;
@@ -53,9 +57,13 @@ class Slider{
     }
 }
 // Launch Sliders function
+interface HTMLElement {
+    attachEvent(event: string, listener: EventListener): boolean;
+    detachEvent(event: string, listener: EventListener): void;
+}
 class LaunchSliders {
-    protected arr: Array<string>;
-    s: any;
+    private arr;
+    private s: Slider;
     constructor(arr: Array<string>) {
         this.arr = arr;
     }
@@ -64,7 +72,7 @@ class LaunchSliders {
         let slideEl = document.querySelectorAll(slide);
         let mE = document.querySelectorAll(arrow);
         let slider__arrow = document.getElementById(parentsArrow);
-        this.s = new Slider(slideEl, mE, slider__arrow);
+        this.s = new Slider({slideEl:slideEl, manageEl:mE});
         this.s.autoSlide();
         if(slider__arrow.addEventListener) {
             slider__arrow.addEventListener('click', this.s.thisPoint.bind(this.s), false);
@@ -74,7 +82,6 @@ class LaunchSliders {
     }
 }
 
-// Finder for section Ideas
 class ImgFinder {
     protected url: string;
     protected urlRetina: string;
@@ -86,24 +93,25 @@ class ImgFinder {
         this.urlRetina = `https://pixabay.com/api/?key=${API_KEY}&image_type=photo&per_page=7&min_height=620&q=`;
     }
     static genTpl(obj: any): void {
-        let out = document.getElementById('out'),
-            gridItem = document.querySelectorAll('.grid-item'),
-            gridTxt = document.querySelectorAll('.grid__txt');
+        let gridItem: Object = document.querySelectorAll('.grid-item'),
+            gridTxt: Object = document.querySelectorAll('.grid__txt');
         for (let i = 0; i < obj.length; i++){
             let {[i]: {webformatURL, user}} = obj;
             gridItem[i].style.backgroundImage = `url(${webformatURL})`;
-            gridTxt[i].innerHTML = `Posted: ${user}`;
+            let span = document.createElement('span');
+            span.appendChild(document.createTextNode(`Posted: ${user}`));
+            gridTxt[i].appendChild(span);
         }
     };
     query():string {
-        return document.getElementById(this.inputEl).value;
+        return (<HTMLInputElement>document.getElementById(this.inputEl)).value;
     };
-    isRetina():boolean{
+    static isRetina():boolean{
         return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
     }
     loadDoc():void {
         let xhttp = null;
-        if (window.XMLHttpRequest) {
+        if (XMLHttpRequest) {
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -111,7 +119,7 @@ class ImgFinder {
                     ImgFinder.genTpl(data.hits);
                 }
             };
-            if(this.isRetina()) {
+            if(ImgFinder.isRetina()) {
                 xhttp.open("GET", `${this.urlRetina}${encodeURIComponent(this.query())}`, true);
             } else {
                 xhttp.open("GET", `${this.url}${encodeURIComponent(this.query())}`, true);
@@ -124,15 +132,19 @@ class ImgFinder {
 }
 
 // Add event listners
+interface Event {
+    which: any;
+    keyCode: any;
+}
 class LaunchFinder {
-    protected obj:[string, string];
-    constructor(obj: any){
+    private obj;
+    constructor(obj: string[]){
         this.obj = obj;
     }
     addEvsLs(): void {
         let[submitEl, inputQueryEl] = this.obj;
-        let submit = document.getElementById(submitEl);
-        let inputQuery = document.getElementById(inputQueryEl);
+        let submit: HTMLElement = document.getElementById(submitEl);
+        let inputQuery: HTMLElement = document.getElementById(inputQueryEl);
         if(inputQuery.attachEvent){
             inputQuery.attachEvent('onkeydown', (event) => {
                 let e = window.event;
@@ -140,7 +152,7 @@ class LaunchFinder {
                 if (keyCode === 13) return false;
             });
         }
-        let f = new ImgFinder('search__query');
+        let f = new ImgFinder(inputQueryEl);
         f.loadDoc();
         if(submit.addEventListener) {
             submit.addEventListener('click', (ev) => {
