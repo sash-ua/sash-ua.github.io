@@ -128,6 +128,7 @@ var ImgFinder = (function () {
             else {
                 var span = document.createElement('span');
                 span.appendChild(document.createTextNode("Posted: " + user));
+                span.style.lineHeight = w;
                 gridTxt[i].appendChild(span);
             }
         }
