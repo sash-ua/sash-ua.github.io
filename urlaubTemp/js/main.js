@@ -122,15 +122,11 @@ var ImgFinder = (function () {
             gridItem[i].style.height = w;
             var m = new MasonryHandler(this.masonryConfig);
             m.crt();
-            if (gridTxt[i].hasChildNodes()) {
-                ImgFinder.rm(gridTxt[i]);
-            }
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode("Posted: " + user));
-                span.style.lineHeight = w;
-                gridTxt[i].appendChild(span);
-            }
+            ImgFinder.rm(gridTxt[i]);
+            var span = document.createElement('span');
+            span.appendChild(document.createTextNode("Posted: " + user));
+            span.style.lineHeight = w;
+            gridTxt[i].appendChild(span);
         }
     };
     ;

@@ -141,14 +141,11 @@ class ImgFinder {
             gridItem[i].style.height = w;
             let m = new MasonryHandler(this.masonryConfig);
             m.crt();
-            if(gridTxt[i].hasChildNodes()) {
-                ImgFinder.rm(gridTxt[i]);
-            } else {
-                let span = document.createElement('span');
-                span.appendChild(document.createTextNode(`Posted: ${user}`));
-                span.style.lineHeight = w;
-                gridTxt[i].appendChild(span);
-            }
+            ImgFinder.rm(gridTxt[i]);
+            let span = document.createElement('span');
+            span.appendChild(document.createTextNode(`Posted: ${user}`));
+            span.style.lineHeight = w;
+            gridTxt[i].appendChild(span);
         }
     };
     query():string {
