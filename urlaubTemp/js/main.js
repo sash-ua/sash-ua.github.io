@@ -1,5 +1,10 @@
 /* Copyright Alex Tranchenko 2016*/
 'use strict';
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Slider = (function () {
     function Slider(config) {
         this.index = 0;
@@ -69,16 +74,13 @@ var LaunchSliders = (function () {
     };
     return LaunchSliders;
 }());
-// interface Masonry {
-//
-// }
 var MasonryHandler = (function () {
     function MasonryHandler(options) {
         this.options = options;
     }
     MasonryHandler.prototype.crt = function () {
         var _a = this.options, elem = _a.elem, itemSelector = _a.itemSelector, columnWidth = _a.columnWidth, gutter = _a.gutter, percentPosition = _a.percentPosition, isResizable = _a.isResizable, isFitWidth = _a.isFitWidth;
-        this.msnr = new Masonry(elem, {
+        return this.msnr = new Masonry(elem, {
             itemSelector: itemSelector,
             columnWidth: columnWidth,
             gutter: gutter,
@@ -89,9 +91,9 @@ var MasonryHandler = (function () {
     return MasonryHandler;
 }());
 var ImgFinder = (function () {
-    function ImgFinder(inputEl, masonryConfig) {
+    function ImgFinder(inputEl, masonry) {
         this.inputEl = inputEl;
-        this.masonryConfig = masonryConfig;
+        this.masonry = masonry;
         var API_KEY = '3122794-bfbc09f56912ec12a2f9a0cab';
         this.url = "https://pixabay.com/api/?key=" + API_KEY + "&image_type=photo&per_page=9&min_height=310&q=";
         this.urlRetina = "https://pixabay.com/api/?key=" + API_KEY + "&image_type=photo&per_page=9&min_height=620&q=";
@@ -120,8 +122,7 @@ var ImgFinder = (function () {
             cw = gridItem[i].clientWidth;
             w = Math.floor(cw / ImgFinder.picRatio(webformatWidth, webformatHeight)) + "px";
             gridItem[i].style.height = w;
-            var m = new MasonryHandler(this.masonryConfig);
-            m.crt();
+            this.masonry.crt();
             ImgFinder.rm(gridTxt[i]);
             var span = document.createElement('span');
             span.appendChild(document.createTextNode("Posted: " + user));
@@ -137,20 +138,25 @@ var ImgFinder = (function () {
     ImgFinder.prototype.loadDoc = function () {
         var xhttp = null, self = this;
         if (XMLHttpRequest) {
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (xhttp.readyState === 4 && xhttp.status === 200) {
-                    var data = JSON.parse(xhttp.responseText);
-                    self.genTpl(data.hits);
+            try {
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
+                        var data = JSON.parse(xhttp.responseText);
+                        self.genTpl(data.hits);
+                    }
+                };
+                if (ImgFinder.isRetina()) {
+                    xhttp.open("GET", "" + this.urlRetina + encodeURIComponent(this.query()), true);
                 }
-            };
-            if (ImgFinder.isRetina()) {
-                xhttp.open("GET", "" + this.urlRetina + encodeURIComponent(this.query()), true);
+                else {
+                    xhttp.open("GET", "" + this.url + encodeURIComponent(this.query()), true);
+                }
+                xhttp.send();
             }
-            else {
-                xhttp.open("GET", "" + this.url + encodeURIComponent(this.query()), true);
+            catch (err) {
+                console.log(err);
             }
-            xhttp.send();
         }
         else if (!xhttp) {
             return;
@@ -159,15 +165,17 @@ var ImgFinder = (function () {
     ;
     return ImgFinder;
 }());
-var LaunchFinder = (function () {
-    function LaunchFinder(obj, masonryConfig) {
-        this.obj = obj;
-        this.masonryConfig = masonryConfig;
+var LaunchFinder = (function (_super) {
+    __extends(LaunchFinder, _super);
+    function LaunchFinder(submitEl, inputQueryEl, inputEl, masonry) {
+        _super.call(this, inputEl, masonry);
+        this.submitEl = submitEl;
+        this.inputQueryEl = inputQueryEl;
     }
     LaunchFinder.prototype.addEvsLs = function () {
-        var _a = this.obj, submitEl = _a[0], inputQueryEl = _a[1];
-        var submit = document.getElementById(submitEl);
-        var inputQuery = document.getElementById(inputQueryEl);
+        var _this = this;
+        var submit = document.getElementById(this.submitEl);
+        var inputQuery = document.getElementById(this.inputQueryEl);
         if (inputQuery.attachEvent) {
             inputQuery.attachEvent('onkeydown', function (event) {
                 var e = window.event;
@@ -176,23 +184,22 @@ var LaunchFinder = (function () {
                     return false;
             });
         }
-        var f = new ImgFinder(inputQueryEl, this.masonryConfig);
-        f.loadDoc();
+        this.loadDoc();
         if (submit.addEventListener) {
             submit.addEventListener('click', function (ev) {
                 ev.preventDefault();
-                f.loadDoc();
+                _this.loadDoc();
             });
         }
         else {
             submit.attachEvent('onclick', function (ev) {
                 ev.returnValue = false;
-                f.loadDoc();
+                _this.loadDoc();
             });
         }
     };
     return LaunchFinder;
-}());
+}(ImgFinder));
 window.onload = function () {
     //Slider
     var sl1 = ['.slider__1_slide', '.slider__1_arrow', 'slider__1_arrows'], sl2 = ['.slider__2_slide', '.slider__2_arrow', 'slider__2_arrows'], sl3 = ['.slider__3_slide', '.slider__3_arrow', 'slider__3_arrows'];
@@ -203,11 +210,10 @@ window.onload = function () {
     var s3 = new LaunchSliders(sl3);
     s3.addEvLisner();
     // Masonry
-    var masonryConfig = { elem: '.grid', itemSelector: '.grid-item', columnWidth: '.grid-sizer', gutter: 20,
-        percentPosition: true, isResizable: true, isFitWidth: true };
+    var masonry = new MasonryHandler({ elem: '.grid', itemSelector: '.grid-item', columnWidth: '.grid-sizer', gutter: 20,
+        percentPosition: true, isResizable: true, isFitWidth: true });
     //ImgFinder
-    var fData = ['search__partners', 'search__query'];
-    var finder = new LaunchFinder(fData, masonryConfig);
+    var finder = new LaunchFinder('search__partners', 'search__query', 'search__query', masonry);
     finder.addEvsLs();
 };
 //# sourceMappingURL=main.js.map

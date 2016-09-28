@@ -81,9 +81,7 @@ class LaunchSliders {
         }
     }
 }
-// interface Masonry {
-//
-// }
+
 class MasonryHandler {
     private options;
     public msnr: Object;
@@ -92,7 +90,7 @@ class MasonryHandler {
     }
     crt(){
         let {elem, itemSelector, columnWidth, gutter, percentPosition, isResizable, isFitWidth} = this.options;
-        this.msnr = new Masonry( elem, {
+        return this.msnr = new Masonry( elem, {
             itemSelector: itemSelector,
             columnWidth: columnWidth,
             gutter: gutter,
@@ -105,10 +103,10 @@ class ImgFinder {
     protected url: string;
     protected urlRetina: string;
     protected inputEl: string;
-    protected masonryConfig: Object;
-    constructor(inputEl: string, masonryConfig: Object){
+    protected masonry;
+    constructor(inputEl: string, masonry: MasonryHandler){
         this.inputEl = inputEl;
-        this.masonryConfig = masonryConfig;
+        this.masonry = masonry;
         const API_KEY = '3122794-bfbc09f56912ec12a2f9a0cab';
         this.url = `https://pixabay.com/api/?key=${API_KEY}&image_type=photo&per_page=9&min_height=310&q=`;
         this.urlRetina = `https://pixabay.com/api/?key=${API_KEY}&image_type=photo&per_page=9&min_height=620&q=`;
@@ -139,8 +137,7 @@ class ImgFinder {
             cw = gridItem[i].clientWidth;
             w = `${Math.floor(cw/ImgFinder.picRatio(webformatWidth, webformatHeight))}px`;
             gridItem[i].style.height = w;
-            let m = new MasonryHandler(this.masonryConfig);
-            m.crt();
+            this.masonry.crt();
             ImgFinder.rm(gridTxt[i]);
             let span = document.createElement('span');
             span.appendChild(document.createTextNode(`Posted: ${user}`));
@@ -151,23 +148,27 @@ class ImgFinder {
     query():string {
         return (<HTMLInputElement>document.getElementById(this.inputEl)).value;
     };
-    loadDoc():void {
+    protected loadDoc():void {
         let xhttp = null,
             self = this;
         if (XMLHttpRequest) {
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (xhttp.readyState === 4 && xhttp.status === 200) {
-                    let data = JSON.parse(xhttp.responseText);
-                    self.genTpl(data.hits);
+            try {
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
+                        let data = JSON.parse(xhttp.responseText);
+                        self.genTpl(data.hits);
+                    }
+                };
+                if (ImgFinder.isRetina()) {
+                    xhttp.open("GET", `${this.urlRetina}${encodeURIComponent(this.query())}`, true);
+                } else {
+                    xhttp.open("GET", `${this.url}${encodeURIComponent(this.query())}`, true);
                 }
-            };
-            if(ImgFinder.isRetina()) {
-                xhttp.open("GET", `${this.urlRetina}${encodeURIComponent(this.query())}`, true);
-            } else {
-                xhttp.open("GET", `${this.url}${encodeURIComponent(this.query())}`, true);
+                xhttp.send();
+            } catch(err) {
+                console.log(err);
             }
-            xhttp.send();
         } else if (!xhttp) {
             return;
         }
@@ -179,17 +180,17 @@ interface Event {
     which: any;
     keyCode: any;
 }
-class LaunchFinder {
-    private obj;
-    protected masonryConfig: Object;
-    constructor(obj: string[], masonryConfig: Object){
-        this.obj = obj;
-        this.masonryConfig = masonryConfig;
+class LaunchFinder extends ImgFinder{
+    private submitEl;
+    private inputQueryEl;
+    constructor(submitEl: string, inputQueryEl: string, inputEl?, masonry?){
+        super(inputEl, masonry);
+        this.submitEl = submitEl;
+        this.inputQueryEl = inputQueryEl;
     }
     addEvsLs(): void {
-        let[submitEl, inputQueryEl] = this.obj;
-        let submit: HTMLElement = document.getElementById(submitEl);
-        let inputQuery: HTMLElement = document.getElementById(inputQueryEl);
+        let submit: HTMLElement = document.getElementById(this.submitEl);
+        let inputQuery: HTMLElement = document.getElementById(this.inputQueryEl);
         if(inputQuery.attachEvent){
             inputQuery.attachEvent('onkeydown', (event) => {
                 let e = window.event;
@@ -197,17 +198,16 @@ class LaunchFinder {
                 if (keyCode === 13) return false;
             });
         }
-        let f = new ImgFinder(inputQueryEl, this.masonryConfig);
-        f.loadDoc();
+        this.loadDoc();
         if(submit.addEventListener) {
             submit.addEventListener('click', (ev) => {
                 ev.preventDefault();
-                f.loadDoc();
+                this.loadDoc();
             });
         } else {
             submit.attachEvent('onclick', (ev) => {
                 ev.returnValue = false;
-                f.loadDoc();
+                this.loadDoc();
             });
         }
     }
@@ -225,10 +225,9 @@ window.onload = function () {
     let s3 = new LaunchSliders(sl3);
     s3.addEvLisner();
     // Masonry
-    let masonryConfig = {elem:'.grid', itemSelector: '.grid-item', columnWidth: '.grid-sizer', gutter: 20,
-        percentPosition: true, isResizable: true, isFitWidth: true};
+    let masonry = new MasonryHandler({elem:'.grid', itemSelector: '.grid-item', columnWidth: '.grid-sizer', gutter: 20,
+        percentPosition: true, isResizable: true, isFitWidth: true});
     //ImgFinder
-    let fData = ['search__partners', 'search__query'];
-    let finder = new LaunchFinder(fData, masonryConfig);
+    let finder = new LaunchFinder('search__partners', 'search__query', 'search__query', masonry);
     finder.addEvsLs();
 };
