@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="css/build.css">
     <link rel="stylesheet" href="css/main.css">
     <!-- 2. Configure SystemJS -->
+
     <script>
         System.config({
             defaultJSExtensions: false
         });
-        System.import('js/main.js');
+        System.import('js/main.js')
+            .then(null, console.error.bind(console));
     </script>
 </head>
 <body>
