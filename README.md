@@ -22,7 +22,7 @@ Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 Responsive: Yes.
  
-Used: HTML5, CSS3, SASS / SCSS, JS (ES6, OOP, MVP), Lodash, SystemJS + jspm, BEM. 
+Used: HTML5, CSS3, SASS / SCSS, JS (ES6, OOP, MVC), Lodash, SystemJS + jspm, BEM. 
 
 Tested: Chrome latest.
 

@@ -15,8 +15,6 @@ function controller(){
         for(i = 0; i <= 5; i++){
             if(i < 5) {
                 var piece = view(messages[0], 'p');
-                console.log(piece === undefined);
-                console.log(piece);
                 var elem = model(piece);
                 var order = controllerDecision(elem);
                 if(order === 'cancel') return;
