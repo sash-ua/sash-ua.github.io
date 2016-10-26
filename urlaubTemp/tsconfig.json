@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": false,
+    "stripInternal": true,
+    "module": "system",
+    "moduleResolution": "node",
+    "target": "es5",
+    "noEmitOnError": false,
+    "inlineSources": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "preserveConstEnums": true
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components",
+    "build",
+    "src/plugins/",
+    "template",
+    "tmp",
+    "src/jspm_packages",
+    "jspm_packages"
+  ]
+}
