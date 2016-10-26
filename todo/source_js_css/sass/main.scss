@@ -1,0 +1,189 @@
+@import 'mixins';
+
+body {
+    background-color : #f5f5f5;
+}
+.link {
+    color: #777;
+    display : block;
+    line-height : 30px;
+    text-decoration : none;
+}
+.rel__item {
+    margin : 0;
+    padding : 0;
+    position : relative;
+}
+.list {
+    @extend .rel__item;
+}
+.animated {
+    @include transition(all, .2s ease);
+    &::before {
+        @include transition(all, .2s ease);
+    }
+    &::after {
+        @include transition(all, .2s ease);
+    }
+}
+.todos {
+    @include box-sizing();
+    margin : 0 auto;
+    width : 620px;
+    @include mq($until: tablet) {
+        width : 98%;
+    }
+}
+.todos__header {
+    color : rgba(175, 47, 47, .15);
+    font-size: 100px;
+    font-weight : 400;
+    margin : 20px auto;
+    text-align : center;
+}
+.todos__item {
+    @extend .todos;
+    @include box-shadow(0, 0, 1px, #808080, inset);
+    border : 0;
+    display : block;
+    font-size: 24px;
+    min-width : 250px;
+    padding: 16px 40px 16px 60px;
+    &:focus {
+        outline: none;
+    }
+    @include mq($until: tablet) {
+        padding: 16px 10px 16px 40px;
+        width : 100%;
+    }
+}
+.todos__body {
+    @include box-shadow(0, 20px, 50px, rgba(0, 0, 0, .1));
+}
+.todos__checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: 0;
+    min-height: 58px;
+    outline: none;
+    position : absolute;
+    left: 2px;
+    top: 0;
+    text-align: center;
+    width: 34px;
+}
+.visible .todos__checkbox {
+    display : inherit;
+}
+.todos__checkbox_main {
+    display : none;
+    line-height : 58px;
+    &::before {
+        content : '\2714';
+        color: #e6e6e6;
+        font-size: 22px;
+        padding: 16px 8px;
+    }
+    &:checked::before {
+        color: #f90303;
+    }
+}
+.inactive .todos__checkbox_main{
+    &:checked::before {
+        color: #e6e6e6;
+    }
+}
+.todos__checkbox_sub {
+    display : none;
+    line-height : 58px;
+    &::before {
+        content : '\2714';
+        color: #cdcdcd;
+        font-size: 22px;
+        padding: 16px 8px;
+    }
+    &:checked::before {
+        color: #06be24;
+    }
+}
+.todos__checkbox_del {
+    left : inherit;
+    line-height : 58px;
+    right : 0;
+    text-align : center;
+    &::before {
+        content : '\2717';
+        color: #cdcdcd;
+        font-size: 22px;
+    }
+    &:hover::before {
+        color: #f90303;
+    }
+}
+.list__item {
+    @extend .list;
+    display : inline-block;
+    width: 100%;
+    z-index : 1;
+}
+.todos__edit {
+    @extend  .todos__item;
+    display : none;
+    margin-top: 15px;
+    width : 100%;
+}
+.visible_edit .todos__edit {
+    display : block;
+}
+.visible .filters {
+    display : inherit;
+}
+.filters {
+    display : none;
+    margin : 0;
+    padding : 10px 0;
+    position : relative;
+    &::before {
+        content : '';
+        position : absolute;
+        top : 0;
+        background : #b7b7b7;
+        border-top : 1px solid #d8d8d8;
+        display : block;
+        width : 100%;
+        height : 1px;
+    }
+}
+.filters__item {
+    @include border-radius();
+    background-color : #d8d8d8;
+    display : inline-block;
+    text-align : center;
+    width : 20%;
+    @include mq($until: tablet) {
+        width : 19%;    }
+}
+.filters__link {
+    @extend .link;
+    @include border-radius();
+    color : #fff;
+    @include mq($until: tablet) {
+        font-size : 12px;
+    }
+}
+.filters__link_act {
+    color : #ff0000;
+}
+.filters__count {
+    color : inherit;
+    display : block;
+    float : left;
+    height : 30px;
+    line-height: 30px;
+    text-align : center;
+    width : 86px;
+    @include mq($until: tablet) {
+        width : 50px;
+    }
+}
