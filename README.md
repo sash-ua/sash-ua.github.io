@@ -1,3 +1,13 @@
+##The web application [To Do list (Angular 2), demo]( https://sash-ua.github.io/todo-angular2 ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/todo-angular2 ).
+ 
+Angular 2 web-app. It has too much extra code and intended for educational purposes. Not bundled code is in source-code directory. For AOT bundling used Rollup.
+
+Responsive: Yes.
+
+Used: HTML5, CSS3, Angular2 + TypeScript, Rollup, SCSS, BEM. 
+
+Cross-browser compatibility: latest versions of popular browsers.
+
 ##The site [Urlaubsglück, demo](https://sash-ua.github.io/urlaubTemp/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/urlaubTemp ).
  
 Pixel-perfect: Yes.
