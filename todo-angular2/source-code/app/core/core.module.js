@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Page404Component } from "./404.component/404.component";
-import { FormsModule } from "@angular/forms";
 var CoreModule = (function () {
     function CoreModule() {
     }
@@ -19,10 +18,11 @@ var CoreModule = (function () {
 CoreModule = __decorate([
     NgModule({
         imports: [
-            CommonModule,
-            FormsModule
+            CommonModule
         ],
-        exports: [],
+        exports: [
+            Page404Component
+        ],
         declarations: [
             Page404Component
         ],
