@@ -247,7 +247,7 @@ body .hidden {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    width: 86px; }
+    width: 100px; }
 @media (max-width: 47.99em) {
     .filters__count {
         width: 100%; } }
