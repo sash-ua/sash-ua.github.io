@@ -18,7 +18,7 @@ import {ErrorHandlerService} from "./services/error.handler.service/error.handle
                     <filters></filters>
                 <span class="filters__count">Total to do: {{quantityTodos}}</span>
             </div>
-            <div class="rules">Double-click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>
+            <div class="rules">Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>
         </div>
     </section>`,
     providers: []

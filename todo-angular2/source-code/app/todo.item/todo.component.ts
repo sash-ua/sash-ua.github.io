@@ -4,12 +4,12 @@ import {AppComponent} from "../AppComponent";
 import {ListItem} from "./list.item";
 
 @Component({
-    template: `<li (dblclick)="open($event);" *ngFor="let todo of todos; let idx = index; trackBy: trackByTodo" 
-               class="todos__item">{{todo.value}}{{isActive}}
+    template: `<li (click)="open($event)" *ngFor="let todo of todos; let idx = index; trackBy: trackByTodo" 
+               class="todos__item">{{todo.value}}
                     <input  [(ngModel)]="todo.done" (change)="checkTodo(!todo.done, idx)" type='checkbox' class='todos__checkbox todos__checkbox_sub'>
                     <button (click)="rmTodo(idx)" class='todos__checkbox todos__checkbox_del animated>'></button>
                     <div class='todos__edit_item animated__long' title='Double-click to edit a Todo' >
-                        <input (keyup.enter)="edit(input, idx, input.value);" (keyup.escape)="escape(input);" #input [value]="todo.value" type='text' class='todos__edit' autofocus>
+                        <input (keyup.enter)="edit(input, idx, inputTodo.value);" (keyup.escape)="escape(inputTodo); $event.stopPropagation();" #inputTodo [value]="todo.value" type='text' class='todos__edit' autofocus>
                     </div>
                 </li>`,
     providers: []

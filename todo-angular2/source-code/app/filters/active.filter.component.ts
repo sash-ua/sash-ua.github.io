@@ -6,7 +6,7 @@ import {ListItem} from "../todo.item/list.item";
 
 
 @Component({
-    template: `<li (dblclick)="open($event);"  *ngFor="let todo of todos; let idx = index; trackBy: trackByTodo" [class.hidden]="todo.done" class="todos__item">{{todo.value}}{{isActive}}
+    template: `<li (click)="open($event);"  *ngFor="let todo of todos; let idx = index; trackBy: trackByTodo" [class.hidden]="todo.done" class="todos__item">{{todo.value}}{{isActive}}
                     <input  [(ngModel)]="todo.done" (change)="checkTodo(!todo.done, idx)" type='checkbox' class='todos__checkbox todos__checkbox_sub'>
                     <button (click)="rmTodo(idx)" class='todos__checkbox todos__checkbox_del animated>'></button>
                     <div class='todos__edit_item animated__long' title='Double-click to edit a Todo' >
