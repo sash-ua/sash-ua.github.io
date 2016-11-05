@@ -4,7 +4,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {Page404Component} from "./core/404.component/404.component";
 import {ActiveFilterComponent} from "./filters/active.filter.component";
 import {ComplitedFilterComponent} from "./filters/complited.filter.component";
-import {TodoComponent} from "./todo.item/todo.component";
+import {TodoComponent} from "./todo/todo.component";
 
 const routes: Routes = [
     {path: '', redirectTo:'all', pathMatch: 'full'},

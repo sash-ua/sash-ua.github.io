@@ -13,10 +13,10 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./AppComponent";
 import { CoreModule } from "./core/core.module";
 import { FiltersModule } from "./filters/filters.module";
-import { TodoModule } from "./todo.item/todo.module";
+import { TodoModule } from "./todo/todo.module";
 import { TodosService } from "./services/todos.service/todos.service";
 import { ErrorHandlerService } from "./services/error.handler.service/error.handler.service";
-import { ListItem } from "./todo.item/list.item";
+import { ListItem } from "./todo/list.item";
 var AppModule = (function () {
     function AppModule() {
     }

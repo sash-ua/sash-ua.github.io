@@ -1,6 +1,7 @@
 /* Copyright Alex Tranchenko 2016*/
 body {
-    background-color: #f5f5f5; }
+    background-color: #f5f5f5;
+    font-family : Helvetica, Arial,  sans-serif;}
 
 .link, .filters__link {
     color: #777;
@@ -30,6 +31,9 @@ body .active {
     outline: none;
 }
 body .hidden {
+    display : none;
+}
+body .hide {
     display : none;
 }
 .animated__long {

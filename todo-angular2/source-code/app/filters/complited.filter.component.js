@@ -13,50 +13,37 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 import { Component, Inject } from '@angular/core';
 import { TodosService } from "../services/todos.service/todos.service";
 import { AppComponent } from "../AppComponent";
+import { TodoComponent } from "../todo/todo.component";
 var ComplitedFilterComponent = (function () {
-    function ComplitedFilterComponent(todoService, listItems) {
+    function ComplitedFilterComponent(todoService, todoCmpnt, listItems) {
         this.allTodo = listItems;
         this.todoService = todoService;
+        this.todoCmpnt = todoCmpnt;
     }
     ComplitedFilterComponent.prototype.ngOnInit = function () {
-        this.todos = this.allTodo.listItems;
+        this.todos = this.todoService.listItems;
     };
     ComplitedFilterComponent.prototype.trackByTodo = function (index, todo) {
         return todo.id;
     };
     ComplitedFilterComponent.prototype.checkTodo = function (state, id) {
-        this.todoService.highlightTodo(this.allTodo.listItems, state, id);
-        this.todoService.setLocalStorage(this.allTodo.listItems);
-        this.allTodo.isChecked = this.todoService.matchAllAndDone(this.allTodo.listItems);
+        this.todoCmpnt.checkTodo(state, id);
     };
     ComplitedFilterComponent.prototype.rmTodo = function (index) {
-        this.todoService.removeTodo(this.allTodo.listItems, index);
-        this.todoService.setLocalStorage(this.allTodo.listItems);
-        this.allTodo.isChecked = this.todoService.matchAllAndDone(this.allTodo.listItems);
-        this.allTodo.quantityTodos = this.allTodo.listItems.length;
-    };
-    ComplitedFilterComponent.prototype.edit = function (el, index, value) {
-        if (this.todoService.inputValidation(value)) {
-            this.todoService.editTodo(this.allTodo.listItems, index, value);
-            this.todoService.setLocalStorage(this.allTodo.listItems);
-            this.todoService.hideEl(el);
-        }
-    };
-    ComplitedFilterComponent.prototype.open = function (ev) {
-        this.todoService.openEl(ev);
-    };
-    ComplitedFilterComponent.prototype.escape = function (el) {
-        this.todoService.hideEl(el);
+        this.todoCmpnt.rmTodo(index);
     };
     return ComplitedFilterComponent;
 }());
 ComplitedFilterComponent = __decorate([
     Component({
-        template: "<li (click)=\"open($event);\" *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo\" [class.hidden]=\"!todo.done\" class=\"todos__item\">{{todo.value}}{{isActive}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                    <div class='todos__edit_item animated__long' title='Double-click to edit a Todo' >\n                        <input (keyup.enter)=\"edit(input, idx, input.value);\" (keyup.escape)=\"escape(input);\" #input [value]=\"todo.value\" type='text' class='todos__edit' autofocus>\n                    </div>\n                </li>"
+        template: "<li *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo\" [class.hidden]=\"!todo.done\" class=\"todos__item\">{{todo.value}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                </li>",
+        providers: [TodoComponent]
     }),
     __param(0, Inject(TodosService)),
-    __param(1, Inject(AppComponent)),
+    __param(1, Inject(TodoComponent)),
+    __param(2, Inject(AppComponent)),
     __metadata("design:paramtypes", [TodosService,
+        TodoComponent,
         AppComponent])
 ], ComplitedFilterComponent);
 export { ComplitedFilterComponent };

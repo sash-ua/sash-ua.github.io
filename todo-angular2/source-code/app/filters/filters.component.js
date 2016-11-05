@@ -24,9 +24,14 @@ var FiltersComponent = (function () {
         var _this = this;
         this.delCompleted = Observable.fromEvent(document.getElementById('del-all-completed'), 'click')
             .subscribe(function (x) {
-            _this.todoService.setLocalStorage(_this.todoService.deleteAll(_this.allTodo.listItems));
-            _this.allTodo.isChecked = _this.todoService.matchAllAndDone(_this.allTodo.listItems);
-            _this.allTodo.quantityTodos = _this.allTodo.listItems.length;
+            _this.todoService.setLocalStorage(_this.todoService.deleteAll(_this.todoService.listItems));
+            _this.allTodo.isChecked = _this.todoService.matchAllAndDone(_this.todoService.listItems);
+            _this.allTodo.quantityTodos = _this.todoService.listItems.length;
+            if (_this.allTodo.quantityTodos === 0) {
+                _this.allTodo.hide = true;
+                _this.allTodo.isHidden = false;
+            }
+            ;
         });
     };
     return FiltersComponent;

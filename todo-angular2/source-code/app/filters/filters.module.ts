@@ -17,7 +17,7 @@ import {TodosService} from "../services/todos.service/todos.service";
     exports: [
         ActiveFilterComponent,
         ComplitedFilterComponent,
-        FiltersComponent
+        FiltersComponent,
     ],
     declarations: [
         ActiveFilterComponent,

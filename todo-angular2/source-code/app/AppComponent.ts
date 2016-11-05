@@ -1,6 +1,6 @@
 
 import {Component, OnInit, Inject} from '@angular/core';
-import {ListItem} from "./todo.item/list.item";
+import {ListItem} from "./todo/list.item";
 import {TodosService} from "./services/todos.service/todos.service";
 import {ErrorHandlerService} from "./services/error.handler.service/error.handler.service";
 
@@ -14,26 +14,25 @@ import {ErrorHandlerService} from "./services/error.handler.service/error.handle
             <h1 class="todos__header">To Do List</h1>
             <div id="todos__body-id" class="todos__body rel__item">
                 <input type="text" #name (keyup.enter)="onSubmit(name.value); name.value=''; $event.stopPropagation();" class="todos__item" placeholder="Add a to-do..." [autofocus]="'true'">
-                <input type="checkbox" (click)="checkAllFunc(mainCheckBox.checked)" [checked]="isChecked" #mainCheckBox [class.hidden]="isHidden"  class="todos__checkbox todos__checkbox_main">
-                    <filters></filters>
-                <span class="filters__count">Total to do: {{quantityTodos}}</span>
+                <input type="checkbox" (click)="checkAllFunc(mainCheckBox.checked)" [checked]="isChecked" #mainCheckBox [class.hidden]="isHidden"  class="todos__checkbox todos__checkbox_main" title="Active / Done">
+                <filters [class.hide]="hide"></filters>
+                <span [class.hide]="hide" class="filters__count">Total to do: {{quantityTodos}}</span>
             </div>
-            <div class="rules">Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>
+            <div [class.hide]="hide" class="rules" >Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>
         </div>
     </section>`,
     providers: []
 })
 
 export class AppComponent implements OnInit{
+    appState: boolean;
     isHidden: boolean;
+    hide: boolean;
     checkAll:boolean;
     isChecked:boolean;
     quantityTodos: number;
-    private  id: number;
-    protected listItems: any[];
     private errorH:any;
     private todoService: any;
-    private savedObj: Object;
 
     constructor(
         @Inject(TodosService) todoService: TodosService,
@@ -43,39 +42,34 @@ export class AppComponent implements OnInit{
         this.todoService = todoService;
     }
     ngOnInit() {
-        this.todoInit();
-        this.isChecked = this.todoService.matchAllAndDone(this.listItems);
-        this.quantityTodos = this.listItems.length;
+        this.appState = this.todoService.appInit();
+        this.appCmpntInit(this.appState);
+        this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+        this.quantityTodos = this.todoService.listItems.length;
     }
-    todoInit(){
-        this.savedObj = JSON.parse(this.todoService.getData());
-        if(typeof (this.savedObj) === 'object' && this.savedObj !== null){
-            this.listItems = this.savedObj;
+    appCmpntInit(state: boolean){
+        if(state){
             this.isHidden = true;
-            (this.listItems.length) ? this.id = this.listItems[this.listItems.length-1].id + 1 : this.id = 0;
+            this.hide = false;
         } else {
             this.isHidden = false;
-            this.listItems = [];
-            this.id = 0;
+            this.hide = true;
         }
-    }
-    counter(){
-        return this.id++;
     }
     checkAllFunc (state: boolean){
         this.checkAll = state;
-        this.todoService.highlightTodo(this.listItems, this.checkAll);
-        this.todoService.setLocalStorage(this.listItems);
-        this.isChecked = this.todoService.matchAllAndDone(this.listItems);
+        this.todoService.highlightTodo(this.todoService.listItems, this.checkAll);
+        this.todoService.setLocalStorage(this.todoService.listItems);
+        this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
     }
     onSubmit(val:any){
         if(this.todoService.inputValidation(val)) {
+            this.todoService.addItem(val);
             this.isHidden = true;
-            let todo: ListItem = {id: this.counter(), value: val, done: false};
-            this.listItems.push(todo);
-            this.todoService.setLocalStorage(this.listItems);
-            this.isChecked = this.todoService.matchAllAndDone(this.listItems);
-            this.quantityTodos = this.listItems.length;
+            this.hide = false;
+            this.todoService.setLocalStorage(this.todoService.listItems);
+            this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+            this.quantityTodos = this.todoService.listItems.length;
         }
     }
 }

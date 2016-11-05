@@ -30,7 +30,7 @@ FiltersModule = __decorate([
         exports: [
             ActiveFilterComponent,
             ComplitedFilterComponent,
-            FiltersComponent
+            FiltersComponent,
         ],
         declarations: [
             ActiveFilterComponent,

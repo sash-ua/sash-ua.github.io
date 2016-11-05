@@ -32,9 +32,13 @@ export class FiltersComponent implements OnInit {
     ngOnInit() {
     this.delCompleted = Observable.fromEvent(document.getElementById('del-all-completed'), 'click')
         .subscribe((x) => {
-            this.todoService.setLocalStorage(this.todoService.deleteAll(this.allTodo.listItems));
-            this.allTodo.isChecked = this.todoService.matchAllAndDone(this.allTodo.listItems);
-            this.allTodo.quantityTodos = this.allTodo.listItems.length;
+            this.todoService.setLocalStorage(this.todoService.deleteAll(this.todoService.listItems));
+            this.allTodo.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+            this.allTodo.quantityTodos = this.todoService.listItems.length;
+            if(this.allTodo.quantityTodos === 0) {
+                this.allTodo.hide = true;
+                this.allTodo.isHidden = false;
+            };
         });
     }
 }

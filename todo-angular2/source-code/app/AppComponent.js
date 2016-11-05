@@ -19,40 +19,35 @@ var AppComponent = (function () {
         this.todoService = todoService;
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.todoInit();
-        this.isChecked = this.todoService.matchAllAndDone(this.listItems);
-        this.quantityTodos = this.listItems.length;
+        this.appState = this.todoService.appInit();
+        this.appCmpntInit(this.appState);
+        this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+        this.quantityTodos = this.todoService.listItems.length;
     };
-    AppComponent.prototype.todoInit = function () {
-        this.savedObj = JSON.parse(this.todoService.getData());
-        if (typeof (this.savedObj) === 'object' && this.savedObj !== null) {
-            this.listItems = this.savedObj;
+    AppComponent.prototype.appCmpntInit = function (state) {
+        if (state) {
             this.isHidden = true;
-            (this.listItems.length) ? this.id = this.listItems[this.listItems.length - 1].id + 1 : this.id = 0;
+            this.hide = false;
         }
         else {
             this.isHidden = false;
-            this.listItems = [];
-            this.id = 0;
+            this.hide = true;
         }
-    };
-    AppComponent.prototype.counter = function () {
-        return this.id++;
     };
     AppComponent.prototype.checkAllFunc = function (state) {
         this.checkAll = state;
-        this.todoService.highlightTodo(this.listItems, this.checkAll);
-        this.todoService.setLocalStorage(this.listItems);
-        this.isChecked = this.todoService.matchAllAndDone(this.listItems);
+        this.todoService.highlightTodo(this.todoService.listItems, this.checkAll);
+        this.todoService.setLocalStorage(this.todoService.listItems);
+        this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
     };
     AppComponent.prototype.onSubmit = function (val) {
         if (this.todoService.inputValidation(val)) {
+            this.todoService.addItem(val);
             this.isHidden = true;
-            var todo = { id: this.counter(), value: val, done: false };
-            this.listItems.push(todo);
-            this.todoService.setLocalStorage(this.listItems);
-            this.isChecked = this.todoService.matchAllAndDone(this.listItems);
-            this.quantityTodos = this.listItems.length;
+            this.hide = false;
+            this.todoService.setLocalStorage(this.todoService.listItems);
+            this.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+            this.quantityTodos = this.todoService.listItems.length;
         }
     };
     return AppComponent;
@@ -62,7 +57,7 @@ AppComponent = __decorate([
         moduleId: module.id,
         selector: 'app-root',
         styleUrls: ['app.component.css'],
-        template: "<section class=\"wrapper\">\n        <div class=\"todos\">\n            <h1 class=\"todos__header\">To Do List</h1>\n            <div id=\"todos__body-id\" class=\"todos__body rel__item\">\n                <input type=\"text\" #name (keyup.enter)=\"onSubmit(name.value); name.value=''; $event.stopPropagation();\" class=\"todos__item\" placeholder=\"Add a to-do...\" [autofocus]=\"'true'\">\n                <input type=\"checkbox\" (click)=\"checkAllFunc(mainCheckBox.checked)\" [checked]=\"isChecked\" #mainCheckBox [class.hidden]=\"isHidden\"  class=\"todos__checkbox todos__checkbox_main\">\n                    <filters></filters>\n                <span class=\"filters__count\">Total to do: {{quantityTodos}}</span>\n            </div>\n            <div class=\"rules\">Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>\n        </div>\n    </section>",
+        template: "<section class=\"wrapper\">\n        <div class=\"todos\">\n            <h1 class=\"todos__header\">To Do List</h1>\n            <div id=\"todos__body-id\" class=\"todos__body rel__item\">\n                <input type=\"text\" #name (keyup.enter)=\"onSubmit(name.value); name.value=''; $event.stopPropagation();\" class=\"todos__item\" placeholder=\"Add a to-do...\" [autofocus]=\"'true'\">\n                <input type=\"checkbox\" (click)=\"checkAllFunc(mainCheckBox.checked)\" [checked]=\"isChecked\" #mainCheckBox [class.hidden]=\"isHidden\"  class=\"todos__checkbox todos__checkbox_main\" title=\"Active / Done\">\n                <filters [class.hide]=\"hide\"></filters>\n                <span [class.hide]=\"hide\" class=\"filters__count\">Total to do: {{quantityTodos}}</span>\n            </div>\n            <div [class.hide]=\"hide\" class=\"rules\" >Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>\n        </div>\n    </section>",
         providers: []
     }),
     __param(0, Inject(TodosService)),
