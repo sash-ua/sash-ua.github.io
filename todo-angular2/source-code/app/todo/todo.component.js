@@ -25,30 +25,19 @@ var TodoComponent = (function () {
         return todo.id;
     };
     TodoComponent.prototype.checkTodo = function (state, id) {
-        this.todoService.highlightTodo(this.todoService.listItems, state, id);
-        this.todoService.setLocalStorage(this.todoService.listItems);
-        this.allTodo.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
+        var states = [this.allTodo.isChecked];
+        this.allTodo.isChecked = this.todoService.checkItem(state, id, states)[0];
     };
     TodoComponent.prototype.rmTodo = function (index) {
-        this.todoService.removeTodo(this.todoService.listItems, index);
-        this.todoService.setLocalStorage(this.todoService.listItems);
-        this.allTodo.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
-        this.allTodo.quantityTodos = this.todoService.listItems.length;
-        if (this.allTodo.quantityTodos === 0) {
-            this.allTodo.hide = true;
-            this.allTodo.isHidden = false;
-        }
-        ;
+        var states = [this.allTodo.isChecked, this.allTodo.hide, this.allTodo.isHidden];
+        _a = this.todoService.rmItem(index, states), this.allTodo.isChecked = _a[0], this.allTodo.hide = _a[1], this.allTodo.isHidden = _a[2];
+        var _a;
     };
     TodoComponent.prototype.edit = function (el, index, value) {
-        if (this.todoService.inputValidation(value)) {
-            this.todoService.editTodo(this.todoService.listItems, index, value);
-            this.todoService.setLocalStorage(this.todoService.listItems);
-            this.todoService.hideEl(el);
-        }
+        this.todoService.edit(el, index, value);
     };
     TodoComponent.prototype.open = function (ev, todoState) {
-        this.todoService.openEl(ev, todoState);
+        this.todoService.openCloseEditable(ev, todoState);
     };
     TodoComponent.prototype.escape = function (el) {
         this.todoService.hideEl(el);
@@ -57,7 +46,7 @@ var TodoComponent = (function () {
 }());
 TodoComponent = __decorate([
     Component({
-        template: "<li (click)=\"open($event, todo.done)\" *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo; \" class=\"todos__item\">{{todo.value}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                    <div class='todos__edit_item animated__long' title='Double-click to edit a Todo' >\n                        <input (keyup.enter)=\"edit(inputTodo, idx, inputTodo.value);\" (keyup.escape)=\"escape(inputTodo)\" #inputTodo [value]=\"todo.value\" type='text' class='todos__edit' autofocus>\n                    </div>\n                </li>",
+        template: "<li (click)=\"open($event, todo.done)\" *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo; \" class=\"todos__item\">{{todo.value}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                    <div class='todos__edit_item animated__long'>\n                        <input (keyup.enter)=\"edit(inputTodo, idx, inputTodo.value);\" (keyup.escape)=\"escape(inputTodo)\" #inputTodo [value]=\"todo.value\" type='text' class='todos__edit' autofocus>\n                    </div>\n                </li>",
         providers: []
     }),
     __param(0, Inject(TodosService)),

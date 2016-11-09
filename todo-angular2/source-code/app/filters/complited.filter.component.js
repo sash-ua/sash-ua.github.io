@@ -15,10 +15,9 @@ import { TodosService } from "../services/todos.service/todos.service";
 import { AppComponent } from "../AppComponent";
 import { TodoComponent } from "../todo/todo.component";
 var ComplitedFilterComponent = (function () {
-    function ComplitedFilterComponent(todoService, todoCmpnt, listItems) {
+    function ComplitedFilterComponent(todoService, listItems) {
         this.allTodo = listItems;
         this.todoService = todoService;
-        this.todoCmpnt = todoCmpnt;
     }
     ComplitedFilterComponent.prototype.ngOnInit = function () {
         this.todos = this.todoService.listItems;
@@ -27,10 +26,13 @@ var ComplitedFilterComponent = (function () {
         return todo.id;
     };
     ComplitedFilterComponent.prototype.checkTodo = function (state, id) {
-        this.todoCmpnt.checkTodo(state, id);
+        var states = [this.allTodo.isChecked];
+        this.allTodo.isChecked = this.todoService.checkItem(state, id, states)[0];
     };
     ComplitedFilterComponent.prototype.rmTodo = function (index) {
-        this.todoCmpnt.rmTodo(index);
+        var states = [this.allTodo.isChecked, this.allTodo.hide, this.allTodo.isHidden];
+        _a = this.todoService.rmItem(index, states), this.allTodo.isChecked = _a[0], this.allTodo.hide = _a[1], this.allTodo.isHidden = _a[2];
+        var _a;
     };
     return ComplitedFilterComponent;
 }());
@@ -40,10 +42,8 @@ ComplitedFilterComponent = __decorate([
         providers: [TodoComponent]
     }),
     __param(0, Inject(TodosService)),
-    __param(1, Inject(TodoComponent)),
-    __param(2, Inject(AppComponent)),
+    __param(1, Inject(AppComponent)),
     __metadata("design:paramtypes", [TodosService,
-        TodoComponent,
         AppComponent])
 ], ComplitedFilterComponent);
 export { ComplitedFilterComponent };

@@ -15,6 +15,7 @@ import { CommonModule } from "@angular/common";
 import { FiltersComponent } from "./filters.component";
 import { AppRoutingModule } from "../app_routing.module";
 import { TodosService } from "../services/todos.service/todos.service";
+import { SharedModule } from "../shared/shared.module";
 var FiltersModule = (function () {
     function FiltersModule() {
     }
@@ -25,7 +26,8 @@ FiltersModule = __decorate([
         imports: [
             CommonModule,
             FormsModule,
-            AppRoutingModule
+            AppRoutingModule,
+            SharedModule
         ],
         exports: [
             ActiveFilterComponent,

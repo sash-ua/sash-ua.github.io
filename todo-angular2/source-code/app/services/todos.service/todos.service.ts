@@ -19,11 +19,6 @@ export class TodosService {
     getData(){
         return localStorage.getItem("todos");
     }
-    setObservable(data: any){
-        return Observable.create((observer: any) => {
-            observer.next(data);
-        });
-    }
     setLocalStorage(arr: ListItem[]){
         localStorage.setItem("todos", JSON.stringify(arr));
     }
@@ -46,6 +41,23 @@ export class TodosService {
         let todo: ListItem = {id: this.counter(), value: val, done: false};
         this.listItems.push(todo);
     }
+    rmItem(index: number, states: Array<boolean>){
+        let [isChecked, hide, isHidden] = states;
+        this.removeTodo(this.listItems, index);
+        this.setLocalStorage(this.listItems);
+        isChecked = this.matchAllAndDone(this.listItems);
+        if(this.listItems.length === 0) {
+            hide = true;
+            isHidden = false;
+        };
+        return [isChecked, hide, isHidden];
+    }
+    checkItem(state: boolean, id: number, states: Array<boolean>){
+        let [isChecked] = state;
+        this.highlightTodo(this.listItems, state, id);
+        this.setLocalStorage(this.listItems);
+        return [this.matchAllAndDone(this.listItems)];
+    }
     inputValidation(value: string): boolean {
         return (typeof value === 'string') ? value.replace(/(\s)+/g, '').length > 0 : false;
     }
@@ -57,6 +69,13 @@ export class TodosService {
             for(i = 0; i < arr.length; i++){
                 arr[i].done = state;
             }
+        }
+    }
+    edit(el: HTMLElement, index: number, value: string){
+        if(this.inputValidation(value)){
+            this.saveEditedItem(this.listItems, index, value);
+            this.setLocalStorage(this.listItems);
+            this.hideEl(el);
         }
     }
     removeTodo(arr: ListItem[], id: number = null){
@@ -80,13 +99,17 @@ export class TodosService {
         }
         return (t == l) ? true : false;
     }
-    editTodo(arr: ListItem[], id: number, val: string){
+    saveEditedItem(arr: ListItem[], id: number, val: string){
         arr[id].value = val;
     }
-    openEl(ev: Event, todoState: boolean = false){
+    openCloseEditable(ev: Event, todoState: boolean = false){
         if(todoState === false) {
             if (ev.target.children[2]) {
-                ev.target.children[2].style.height = this.inputFieldHeight;
+                if(window.getComputedStyle(ev.target.children[2],null).getPropertyValue("height") === '0px'){
+                    ev.target.children[2].style.height = this.inputFieldHeight;
+                }else {
+                    ev.target.children[2].style.height = '0';
+                }
             }
         }
     }

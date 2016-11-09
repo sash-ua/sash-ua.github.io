@@ -15,10 +15,9 @@ import { TodosService } from "../services/todos.service/todos.service";
 import { AppComponent } from "../AppComponent";
 import { TodoComponent } from "../todo/todo.component";
 var ActiveFilterComponent = (function () {
-    function ActiveFilterComponent(todoService, todoCmpnt, listItems) {
+    function ActiveFilterComponent(todoService, listItems) {
         this.allTodo = listItems;
         this.todoService = todoService;
-        this.todoCmpnt = todoCmpnt;
     }
     ActiveFilterComponent.prototype.ngOnInit = function () {
         this.todos = this.todoService.listItems;
@@ -27,16 +26,19 @@ var ActiveFilterComponent = (function () {
         return todo.id;
     };
     ActiveFilterComponent.prototype.checkTodo = function (state, id) {
-        this.todoCmpnt.checkTodo(state, id);
+        var states = [this.allTodo.isChecked];
+        this.allTodo.isChecked = this.todoService.checkItem(state, id, states)[0];
     };
     ActiveFilterComponent.prototype.rmTodo = function (index) {
-        this.todoCmpnt.rmTodo(index);
+        var states = [this.allTodo.isChecked, this.allTodo.hide, this.allTodo.isHidden];
+        _a = this.todoService.rmItem(index, states), this.allTodo.isChecked = _a[0], this.allTodo.hide = _a[1], this.allTodo.isHidden = _a[2];
+        var _a;
     };
     ActiveFilterComponent.prototype.edit = function (el, index, value) {
-        this.todoCmpnt.edit(el, index, value);
+        this.todoService.edit(el, index, value);
     };
-    ActiveFilterComponent.prototype.open = function (ev) {
-        this.todoService.openEl(ev);
+    ActiveFilterComponent.prototype.open = function (ev, todoState) {
+        this.todoService.openCloseEditable(ev, todoState);
     };
     ActiveFilterComponent.prototype.escape = function (el) {
         this.todoService.hideEl(el);
@@ -45,14 +47,12 @@ var ActiveFilterComponent = (function () {
 }());
 ActiveFilterComponent = __decorate([
     Component({
-        template: "<li (click)=\"open($event);\"  *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo\" [class.hidden]=\"todo.done\" class=\"todos__item\">{{todo.value}}{{isActive}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                    <div class='todos__edit_item animated__long' title='Double-click to edit a Todo' >\n                        <input (keyup.enter)=\"edit(input, idx, input.value);\" (keyup.escape)=\"escape(input);\" #input [value]=\"todo.value\" type='text' class='todos__edit' autofocus>\n                    </div>\n                </li>",
+        template: "<li (click)=\"open($event);\"  *ngFor=\"let todo of todos; let idx = index; trackBy: trackByTodo\" [class.hidden]=\"todo.done\" class=\"todos__item\">{{todo.value}}{{isActive}}\n                    <input  [(ngModel)]=\"todo.done\" (change)=\"checkTodo(!todo.done, idx)\" type='checkbox' class='todos__checkbox todos__checkbox_sub'>\n                    <button (click)=\"rmTodo(idx)\" class='todos__checkbox todos__checkbox_del animated>'></button>\n                    <div class='todos__edit_item animated__long'>\n                        <input (keyup.enter)=\"edit(input, idx, input.value);\" (Double-ckeyup.escape)=\"escape(input);\" #input [value]=\"todo.value\" type='text' class='todos__edit' autofocus>\n                    </div>\n                </li>",
         providers: [TodoComponent]
     }),
     __param(0, Inject(TodosService)),
-    __param(1, Inject(TodoComponent)),
-    __param(2, Inject(AppComponent)),
+    __param(1, Inject(AppComponent)),
     __metadata("design:paramtypes", [TodosService,
-        TodoComponent,
         AppComponent])
 ], ActiveFilterComponent);
 export { ActiveFilterComponent };

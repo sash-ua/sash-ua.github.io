@@ -16,10 +16,11 @@ import {ErrorHandlerService} from "./services/error.handler.service/error.handle
                 <input type="text" #name (keyup.enter)="onSubmit(name.value); name.value=''; $event.stopPropagation();" class="todos__item" placeholder="Add a to-do..." [autofocus]="'true'">
                 <input type="checkbox" (click)="checkAllFunc(mainCheckBox.checked)" [checked]="isChecked" #mainCheckBox [class.hidden]="isHidden"  class="todos__checkbox todos__checkbox_main" title="Active / Done">
                 <filters [class.hide]="hide"></filters>
-                <span [class.hide]="hide" class="filters__count">Total to do: {{quantityTodos}}</span>
+                <span [class.hide]="hide" class="filters__count">Total tasks: {{quantityTodos}}</span>
             </div>
             <div [class.hide]="hide" class="rules" >Click to edit a Todo, Enter - to confirm changes, Esc - to leave editing!</div>
         </div>
+        <button md-button></button>
     </section>`,
     providers: []
 })

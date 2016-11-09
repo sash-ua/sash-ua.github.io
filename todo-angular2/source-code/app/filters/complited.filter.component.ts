@@ -16,16 +16,13 @@ import {TodoComponent} from "../todo/todo.component";
 export class ComplitedFilterComponent implements OnInit {
     private todos: any;
     private todoService: any;
-    private todoCmpnt: any;
     private allTodo: any;
     constructor(
         @Inject(TodosService) todoService: TodosService,
-        @Inject(TodoComponent) todoCmpnt: TodoComponent,
         @Inject(AppComponent) listItems: AppComponent
     ) {
         this.allTodo = listItems;
         this.todoService = todoService;
-        this.todoCmpnt = todoCmpnt;
     }
     ngOnInit() {
         this.todos = this.todoService.listItems;
@@ -34,9 +31,11 @@ export class ComplitedFilterComponent implements OnInit {
         return todo.id;
     }
     checkTodo(state: boolean, id: number){
-        this.todoCmpnt.checkTodo(state, id);
+        let states = [this.allTodo.isChecked];
+        [this.allTodo.isChecked] = this.todoService.checkItem(state, id, states);
     }
     rmTodo(index: number){
-        this.todoCmpnt.rmTodo(index);
+        let states = [this.allTodo.isChecked, this.allTodo.hide, this.allTodo.isHidden];
+        [this.allTodo.isChecked, this.allTodo.hide, this.allTodo.isHidden] = this.todoService.rmItem(index, states);
     }
 }

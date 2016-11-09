@@ -11,7 +11,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Component, Inject } from '@angular/core';
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/fromEvent';
 import { TodosService } from "../services/todos.service/todos.service";
 import { AppComponent } from "../AppComponent";
@@ -21,25 +20,13 @@ var FiltersComponent = (function () {
         this.todoService = todoService;
     }
     FiltersComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.delCompleted = Observable.fromEvent(document.getElementById('del-all-completed'), 'click')
-            .subscribe(function (x) {
-            _this.todoService.setLocalStorage(_this.todoService.deleteAll(_this.todoService.listItems));
-            _this.allTodo.isChecked = _this.todoService.matchAllAndDone(_this.todoService.listItems);
-            _this.allTodo.quantityTodos = _this.todoService.listItems.length;
-            if (_this.allTodo.quantityTodos === 0) {
-                _this.allTodo.hide = true;
-                _this.allTodo.isHidden = false;
-            }
-            ;
-        });
     };
     return FiltersComponent;
 }());
 FiltersComponent = __decorate([
     Component({
         selector: 'filters',
-        template: "<ul class=\"list todos__list\">\n                    <router-outlet></router-outlet>\n                </ul>\n                <ul class=\"filters__nav\">\n                    <li class=\"filters__item\"><a routerLink=\"all\" routerLinkActive=\"active\" class=\"filters__link animated\">All</a></li>\n                    <li class=\"filters__item\"><a routerLink=\"active\" routerLinkActive=\"active\" class=\"filters__link animated\">Active</a></li>\n                    <li class=\"filters__item\"><a routerLink=\"completed\" routerLinkActive=\"active\" class=\"filters__link animated\">Completed</a></li>\n                    <li class=\"filters__item\"><input type=\"submit\" (mouseenter)=\"delRed=true\" (mouseleave)=\"delRed=false\" [style.color]=\"delRed ? 'red' : '#fff'\" id=\"del-all-completed\" class=\"filters__button filters__link animated\" value=\"Del. Completed\"></li>\n                </ul>"
+        template: "<ul class=\"list todos__list\">\n                    <router-outlet></router-outlet>\n                </ul>\n                <ul class=\"filters__nav\">\n                    <li class=\"filters__item\"><a md-raised-button color=\"primary\" routerLink=\"all\" routerLinkActive=\"active\" class=\"filters__link animated\">All</a></li>\n                    <li class=\"filters__item\"><a md-raised-button color=\"accent\" routerLink=\"active\" routerLinkActive=\"active\" class=\"filters__link animated\">Active</a></li>\n                    <li class=\"filters__item\"><a md-raised-button routerLink=\"completed\" routerLinkActive=\"active\" class=\"filters__link animated\">Completed</a></li>\n                    <li class=\"filters__item\"><a md-raised-button (click)=\"itemVisibility ? itemVisibility = false : itemVisibility = true\"  type=\"submit\"  class=\" filters__link animated\">Del. Completed</a></li>\n                </ul>\n                <cap [style.display]=\"itemVisibility ? 'block' : 'none'\"></cap>\n                <m-w-del-all-done class=\"animated__long\" [style.display]=\"itemVisibility ? 'block' : 'none'\" ></m-w-del-all-done>"
     }),
     __param(0, Inject(TodosService)),
     __param(1, Inject(AppComponent)),

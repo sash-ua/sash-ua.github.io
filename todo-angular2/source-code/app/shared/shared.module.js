@@ -7,17 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TodoComponent } from "./todo.component";
+import { ModalWindowComponent } from "./modalWindow/modal-window.component";
 import { FormsModule } from "@angular/forms";
-import { TodosService } from "../services/todos.service/todos.service";
-var TodoModule = (function () {
-    function TodoModule() {
+import { CapComponent } from "./cap.component/cap.component";
+var SharedModule = (function () {
+    function SharedModule() {
     }
-    return TodoModule;
+    return SharedModule;
 }());
-TodoModule = __decorate([
+SharedModule = __decorate([
     NgModule({
         imports: [
             CommonModule,
@@ -25,17 +25,16 @@ TodoModule = __decorate([
         ],
         exports: [
             CommonModule,
-            FormsModule,
-            TodoComponent
+            ModalWindowComponent,
+            CapComponent
         ],
         declarations: [
-            TodoComponent
+            ModalWindowComponent,
+            CapComponent
         ],
-        providers: [
-            TodosService
-        ],
+        providers: [],
     }),
     __metadata("design:paramtypes", [])
-], TodoModule);
-export { TodoModule };
-//# sourceMappingURL=todo.module.js.map
+], SharedModule);
+export { SharedModule };
+//# sourceMappingURL=shared.module.js.map

@@ -11,7 +11,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from "rxjs/Observable";
 import { ErrorHandlerService } from "../error.handler.service/error.handler.service";
 var TodosService = (function () {
     function TodosService(errorH) {
@@ -20,11 +19,6 @@ var TodosService = (function () {
     }
     TodosService.prototype.getData = function () {
         return localStorage.getItem("todos");
-    };
-    TodosService.prototype.setObservable = function (data) {
-        return Observable.create(function (observer) {
-            observer.next(data);
-        });
     };
     TodosService.prototype.setLocalStorage = function (arr) {
         localStorage.setItem("todos", JSON.stringify(arr));
@@ -49,6 +43,24 @@ var TodosService = (function () {
         var todo = { id: this.counter(), value: val, done: false };
         this.listItems.push(todo);
     };
+    TodosService.prototype.rmItem = function (index, states) {
+        var isChecked = states[0], hide = states[1], isHidden = states[2];
+        this.removeTodo(this.listItems, index);
+        this.setLocalStorage(this.listItems);
+        isChecked = this.matchAllAndDone(this.listItems);
+        if (this.listItems.length === 0) {
+            hide = true;
+            isHidden = false;
+        }
+        ;
+        return [isChecked, hide, isHidden];
+    };
+    TodosService.prototype.checkItem = function (state, id, states) {
+        var isChecked = state[0];
+        this.highlightTodo(this.listItems, state, id);
+        this.setLocalStorage(this.listItems);
+        return [this.matchAllAndDone(this.listItems)];
+    };
     TodosService.prototype.inputValidation = function (value) {
         return (typeof value === 'string') ? value.replace(/(\s)+/g, '').length > 0 : false;
     };
@@ -62,6 +74,13 @@ var TodosService = (function () {
             for (i = 0; i < arr.length; i++) {
                 arr[i].done = state;
             }
+        }
+    };
+    TodosService.prototype.edit = function (el, index, value) {
+        if (this.inputValidation(value)) {
+            this.saveEditedItem(this.listItems, index, value);
+            this.setLocalStorage(this.listItems);
+            this.hideEl(el);
         }
     };
     TodosService.prototype.removeTodo = function (arr, id) {
@@ -95,14 +114,19 @@ var TodosService = (function () {
         }
         return (t == l) ? true : false;
     };
-    TodosService.prototype.editTodo = function (arr, id, val) {
+    TodosService.prototype.saveEditedItem = function (arr, id, val) {
         arr[id].value = val;
     };
-    TodosService.prototype.openEl = function (ev, todoState) {
+    TodosService.prototype.openCloseEditable = function (ev, todoState) {
         if (todoState === void 0) { todoState = false; }
         if (todoState === false) {
             if (ev.target.children[2]) {
-                ev.target.children[2].style.height = this.inputFieldHeight;
+                if (window.getComputedStyle(ev.target.children[2], null).getPropertyValue("height") === '0px') {
+                    ev.target.children[2].style.height = this.inputFieldHeight;
+                }
+                else {
+                    ev.target.children[2].style.height = '0';
+                }
             }
         }
     };

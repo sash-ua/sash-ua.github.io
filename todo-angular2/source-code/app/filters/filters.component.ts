@@ -3,6 +3,8 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/fromEvent';
 import {TodosService} from "../services/todos.service/todos.service";
 import {AppComponent} from "../AppComponent";
+import {MdButton, MdInput, MdToolbar, MdCard} from "@angular/material";
+
 
 @Component({
     selector: 'filters',
@@ -10,35 +12,27 @@ import {AppComponent} from "../AppComponent";
                     <router-outlet></router-outlet>
                 </ul>
                 <ul class="filters__nav">
-                    <li class="filters__item"><a routerLink="all" routerLinkActive="active" class="filters__link animated">All</a></li>
-                    <li class="filters__item"><a routerLink="active" routerLinkActive="active" class="filters__link animated">Active</a></li>
-                    <li class="filters__item"><a routerLink="completed" routerLinkActive="active" class="filters__link animated">Completed</a></li>
-                    <li class="filters__item"><input type="submit" (mouseenter)="delRed=true" (mouseleave)="delRed=false" [style.color]="delRed ? 'red' : '#fff'" id="del-all-completed" class="filters__button filters__link animated" value="Del. Completed"></li>
-                </ul>`
+                    <li class="filters__item"><a md-raised-button color="primary" routerLink="all" routerLinkActive="active" class="filters__link animated">All</a></li>
+                    <li class="filters__item"><a md-raised-button color="accent" routerLink="active" routerLinkActive="active" class="filters__link animated">Active</a></li>
+                    <li class="filters__item"><a md-raised-button routerLink="completed" routerLinkActive="active" class="filters__link animated">Completed</a></li>
+                    <li class="filters__item"><a md-raised-button (click)="itemVisibility ? itemVisibility = false : itemVisibility = true"  type="submit"  class=" filters__link animated">Del. Completed</a></li>
+                </ul>
+                <cap [style.display]="itemVisibility ? 'block' : 'none'"></cap>
+                <m-w-del-all-done class="animated__long" [style.display]="itemVisibility ? 'block' : 'none'" ></m-w-del-all-done>`
 })
 export class FiltersComponent implements OnInit {
+    itemVisibility: boolean;
     private todoService: TodosService;
     private allTodo: AppComponent;
     private delRed: boolean;
     delCompleted: any;
-    constructor(
-        @Inject(TodosService) todoService: TodosService,
-        @Inject(AppComponent) listItems: AppComponent
-    ) {
+
+    constructor(@Inject(TodosService) todoService: TodosService,
+                @Inject(AppComponent) listItems: AppComponent) {
         this.allTodo = listItems;
         this.todoService = todoService;
     }
 
     ngOnInit() {
-    this.delCompleted = Observable.fromEvent(document.getElementById('del-all-completed'), 'click')
-        .subscribe((x) => {
-            this.todoService.setLocalStorage(this.todoService.deleteAll(this.todoService.listItems));
-            this.allTodo.isChecked = this.todoService.matchAllAndDone(this.todoService.listItems);
-            this.allTodo.quantityTodos = this.todoService.listItems.length;
-            if(this.allTodo.quantityTodos === 0) {
-                this.allTodo.hide = true;
-                this.allTodo.isHidden = false;
-            };
-        });
     }
 }

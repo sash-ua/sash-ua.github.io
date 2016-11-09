@@ -10,12 +10,16 @@ import {TodosService} from "../services/todos.service/todos.service";
         FormsModule
     ],
     exports: [
+        CommonModule,
+        FormsModule,
         TodoComponent
     ],
     declarations: [
         TodoComponent
     ],
-    providers: [TodosService],
+    providers: [
+        TodosService
+    ],
 })
 export class TodoModule {
 }

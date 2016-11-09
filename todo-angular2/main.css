@@ -17,6 +17,15 @@ body {
 body .active {
     color : #f60000;}
 
+.wrapper__inactive {
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    height : 100%;
+    width : 100%;
+}
 .filters__button {
     text-align : center;
     width : 100%;
@@ -82,7 +91,7 @@ body .hide {
 
 .todos__header {
     color: rgba(175, 47, 47, 0.15);
-    font-size: 100px;
+    font-size: 6vh;
     font-weight: 400;
     margin: 20px auto;
     text-align: center; }
@@ -102,15 +111,20 @@ body .hide {
     box-shadow: inset 0 0 1px #808080;
     border: 0;
     display: block;
-    font-size: 24px;
-    min-width: 250px;
+    min-width: 230px;
     padding: 16px 40px 16px 60px; }
 .todos__item:focus, .todos__edit:focus {
     outline: none; }
 @media (max-width: 47.99em) {
     .todos__item, .todos__edit {
-        padding: 16px 10px 16px 40px;
-        width: 100%; } }
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
+        padding: 16px 30px 16px 40px;
+        width: 100%;
+        margin : 0;
+    }
+}
 
 .todos__body {
     -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
@@ -125,7 +139,6 @@ body .hide {
     appearance: none;
     background: none;
     border: 0;
-    min-height: 58px;
     outline: none;
     position: absolute;
     left: 2px;
@@ -138,7 +151,8 @@ body .hide {
 
 .todos__checkbox_main {
     display: none;
-    line-height: 58px; }
+    line-height: 44px;
+}
 .todos__checkbox_main::before {
     content: '\2714';
     color: #e6e6e6;
@@ -155,7 +169,7 @@ body .hide {
     -moz-box-sizing    : border-box;
     box-sizing         : border-box;
     cursor : pointer;
-    line-height: 53px; }
+    line-height: 44px; }
 .todos__checkbox_sub::before {
     content: '\2714';
     color: #cdcdcd;
@@ -167,7 +181,7 @@ body .hide {
 .todos__checkbox_del {
     cursor : pointer;
     left: inherit;
-    line-height: 58px;
+    line-height: 46px;
     right: 0;
     text-align: center; }
 .todos__checkbox_del::before {
@@ -183,7 +197,6 @@ body .hide {
     z-index: 1; }
 
 .todos__edit {
-    /*display: none;*/
     margin-top: 15px;
     width: 100%; }
 
@@ -208,38 +221,25 @@ body .hide {
     width: 100%;
     height: 1px; }
 
-.filters__item {
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    background-color: #d8d8d8;
+body .filters__item {
     display: inline-block;
     text-align: center;
     margin-bottom : 3px;
-    width: 20%; }
-@media (max-width: 47.99em) {
-    .filters__item {
-        width: 19%; } }
-
-.filters__link {
+}
+body .filters__link {
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
-    color: #fff; }
-@media (max-width: 47.99em) {
-    .filters__link {
-        font-size: 12px; } }
-.filters__link:hover{
-    -webkit-box-shadow : 0 0 1px 1px gray;
-    -moz-box-shadow    : 0 0 1px 1px gray;
-    box-shadow         : 0 0 1px 1px gray;
 }
+@media (max-width: 47.99em) {
+    body .filters__link {
+        font-size: 2.8vw;
+        padding : 0;
+    } }
+
 
 .filters__link_act {
     color: #ff0000; }
@@ -254,10 +254,14 @@ body .hide {
     width: 100px; }
 @media (max-width: 47.99em) {
     .filters__count {
-        width: 100%; } }
+        width: 100%;
+    } }
 .filters__nav {
+    -webkit-display : flex;
     display : flex;
     justify-content: space-around;
+    -webkit-flex-wrap : wrap;
+    flex-wrap : wrap;
     padding-left : 0;
 }
 .rules {
@@ -265,4 +269,28 @@ body .hide {
     color : #a7a7a7;
     text-align : center;
     width : 100%;
+}
+.modal-window{
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    background-color : #fff;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    border : 1px solid #808080;
+    left : 50%;
+    margin-left : -150px;
+    padding : 8px;
+    position : absolute;
+    text-align : center;
+    top : 10%;
+    width : 300px;
+}
+.modal-window__btn{
+    display : inline;
+    width : 90px;
 }

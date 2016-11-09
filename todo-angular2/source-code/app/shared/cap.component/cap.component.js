@@ -7,35 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
-import { TodoComponent } from "./todo.component";
-import { FormsModule } from "@angular/forms";
-import { TodosService } from "../services/todos.service/todos.service";
-var TodoModule = (function () {
-    function TodoModule() {
+import { Component } from '@angular/core';
+var CapComponent = (function () {
+    function CapComponent() {
     }
-    return TodoModule;
+    CapComponent.prototype.ngOnInit = function () { };
+    return CapComponent;
 }());
-TodoModule = __decorate([
-    NgModule({
-        imports: [
-            CommonModule,
-            FormsModule
-        ],
-        exports: [
-            CommonModule,
-            FormsModule,
-            TodoComponent
-        ],
-        declarations: [
-            TodoComponent
-        ],
-        providers: [
-            TodosService
-        ],
+CapComponent = __decorate([
+    Component({
+        selector: 'cap',
+        template: "<div class=\"wrapper__inactive\"></div>"
     }),
     __metadata("design:paramtypes", [])
-], TodoModule);
-export { TodoModule };
-//# sourceMappingURL=todo.module.js.map
+], CapComponent);
+export { CapComponent };
+//# sourceMappingURL=cap.component.js.map
