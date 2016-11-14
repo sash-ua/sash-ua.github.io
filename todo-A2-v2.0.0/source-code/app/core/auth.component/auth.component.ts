@@ -29,8 +29,10 @@ import {AppComponent} from "../../AppComponent";
     <md-card-content>
         <form name="sign-in">
             <div class="auth-window__form-group">
-                <md-input #si_email type="email" class="auth-window__input auth-window__input_email" placeholder="Email"></md-input>
-                <md-input #si_pass type="password" class="auth-window__input auth-window__input_pass" placeholder="Password"></md-input>
+                <md-input #si_email (keyup.enter)="signIn(si_email.value, si_pass.value); si_pass.value='';"
+                    type="email" class="auth-window__input auth-window__input_email" placeholder="Email"></md-input>
+                <md-input #si_pass (keyup.enter)="signIn(si_email.value, si_pass.value); si_pass.value='';"
+                    type="password" class="auth-window__input auth-window__input_pass" placeholder="Password"></md-input>
             </div>
         </form>
             <button md-raised-button [disableRipple]="true" 
@@ -44,8 +46,10 @@ import {AppComponent} from "../../AppComponent";
     <md-card-content>
         <form name="log-in">
             <div class="auth-window__form-group">
-               <md-input #li_email type="email" class="auth-window__input auth-window__input_email" placeholder="Email" autofocus></md-input>
-               <md-input #li_pass type="password" class="auth-window__input auth-window__input_pass" placeholder="Password">></md-input>
+               <md-input #li_email (keyup.enter)="logIn(li_email.value, li_pass.value); li_pass.value='';" 
+                    type="email" class="auth-window__input auth-window__input_email" placeholder="Email" autofocus></md-input>
+               <md-input #li_pass (keyup.enter)="logIn(li_email.value, li_pass.value); li_pass.value='';" 
+                    type="password" class="auth-window__input auth-window__input_pass" placeholder="Password">></md-input>
             </div>
         </form>
             <button md-raised-button [disableRipple]="true" (click)="logIn(li_email.value, li_pass.value); li_pass.value='';" class="auth-window__btn">Log In</button>
