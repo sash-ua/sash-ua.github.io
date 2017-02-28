@@ -97,38 +97,14 @@ Used: HTML5, CSS3.
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 
-
-#JS learning.
-
-##JS learning. [Authorization, demo](https://sash-ua.github.io/authorization/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/authorization ).
-
-Used: HTML, CSS, JS (ES5), MVP pattern. 
-
-Cross-browser compatibility: latest versions of popular browsers, IE5+.
-
-##JS learning. [Simple slider, demo](https://sash-ua.github.io/slider/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/slider ).
+## [Simple slider, demo](https://sash-ua.github.io/slider/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/slider ).
 
 Used: HTML, CSS, JS (ES5) .
 
 Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
-##JS learning. [Simple JS timers, demo](https://sash-ua.github.io/timers/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/timers ).
-
-Used: HTML, CSS, JS (ES5, OOP). 
-
-Cross-browser compatibility: latest versions of popular browsers, IE10+.
-
-
-##JS learning. [Quiz, demo](https://sash-ua.github.io/exam/index.html ). [Code]( https://github.com/sash-ua/sash-ua.github.io/tree/master/exam ).
-
-Simple Quiz (test, exam) any number of questions and answers, "radio" and "checkbox".
-
-Used: HTML, CSS, JS (ES5), Lodash.
-
-Cross-browser compatibility: latest versions of popular browsers, IE9+.
 
 
 
 
-
-Copyright (c) 2016 Alex Tranchenko.
+Copyright (c) 2017 Alex Tranchenko.
