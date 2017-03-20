@@ -1,4 +1,4 @@
-## The web application [Modeling Genetic drift v.1.0.1 (Angular 2), demo]( https://sash-ua.github.io/genetic-drift-last/ ). [Code]( https://github.com/sash-ua/genetic-drift-last ).
+## The web application [Modeling Genetic drift v.1.3.0 (Angular 2), demo]( https://sash-ua.github.io/genetic-drift-last/ ). [Code]( https://github.com/sash-ua/genetic-drift-last ).
  
 Angular 2 web-application visualizing Genetic drift in depend of the population's size, increasing or natural population decreasing and some probability processes.
 
@@ -11,7 +11,7 @@ Used:  Angular2 + TypeScript, Angular material, Rollup, D3, SCSS, Gulp, BEM, HTM
 Cross-browser compatibility: tested in Chrome latest.
 
 
-## The web application [To Do list v.3.3.0 (Angular 2), demo]( https://sash-ua.github.io/todo-angular2-last/ ). [Code]( https://github.com/sash-ua/todo-angular2-last ).
+## The web application [To Do list v.3.4.2 (Angular 2), demo]( https://sash-ua.github.io/todo-angular2-last/ ). [Code]( https://github.com/sash-ua/todo-angular2-last ).
  
 Angular 2 web-application with a simple authorization, data saved in Firebase and distributed User's access. Not bundled code (JIT) is in source-code directory. For bundling used Rollup.
 
