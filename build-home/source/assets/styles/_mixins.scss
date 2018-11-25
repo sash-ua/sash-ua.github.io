@@ -1,0 +1,93 @@
+@import 'bourbon';
+@import 'sprite';
+@import 'sassMQ';
+
+$color-base: #292D30;
+$color-blue: #248CED;
+$uni-font-sz: calc(1em + 1vw);
+$dimensions-social-link: 40px;
+$font-size: calc(1em + 1vw);
+$sprite: map-get($icons, sprite) !default;
+$mq-base-font-size: 16px !default;
+%txt-cap {
+    text-transform: capitalize;
+}
+
+%color-fff {
+    color: #fff;
+}
+
+%overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin transition($prop:all, $ease:.3s) {
+    -webkit-transition: $prop $ease;
+    -moz-transition: $prop $ease;
+    -ms-transition: $prop $ease;
+    -o-transition: $prop $ease;
+    transition: $prop $ease;
+}
+
+@function sprite-attr($icon, $attr) {
+    $newIcon: map-get($icons, $icon);
+    @if $newIcon == null {
+        @warn "Can't find an icon with the name #{$icon}";
+    }
+    @return map-get($newIcon, $attr);
+}
+
+@function icon-attr($icon) {
+    $attr: (
+        width: sprite-attr($icon, width),
+        height: sprite-attr($icon, height),
+        x: sprite-attr($icon, backgroundX),
+        y: sprite-attr($icon, backgroundY)
+    );
+
+    @return $attr;
+}
+
+%sprite {
+    display: inline-block;
+    background-image: url(map-get($sprite, svgPath));
+    background-size: mq-px2em(map-get($sprite, width)) mq-px2em(map-get($sprite, height));
+}
+
+@mixin sprite($icon, $type: all) {
+    @if $type == all {
+        @extend %sprite;
+    }
+    $iconMap: icon-attr($icon);
+    @if $type == all or $type == size {
+        width: mq-px2em(map-get($iconMap, width) + 0);
+        height: mq-px2em(map-get($iconMap, height) + 0);
+    }
+    @if $type == all or $type == bg {
+        background-position: mq-px2em(map-get($iconMap, x)) mq-px2em(map-get($iconMap, y));
+    }
+}
+
+@mixin social($spr, $spr_hover) {
+    @include sprite($spr);
+    &:hover {
+        @include sprite($spr_hover);
+    }
+}
+
+@mixin font-family($name, $size: $mq-base-font-size) {
+    font-family: $name, Arial, Helvetica, sans-serif;
+    font-size: mq-px2em($size);
+}
+
+@mixin transform($props) {
+    -webkit-transform: $props;
+    -moz-transform: $props;
+    -ms-transform: $props;
+    -o-transform: $props;
+    transform: $props;
+}
